@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Admissions | Aman Sr. Sec. School</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries">
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+
+    <style>
+        /* ----- base reset & typography ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #fbf8ff;
+            color: #1b1b21;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ----- brand colours ----- */
+        :root {
+            --primary: #000666;
+            --primary-container: #1a237e;
+            --secondary: #00639a;
+            --tertiary: #fabd00;
+            --tertiary-dim: #e6a800;
+            --surface: #fbf8ff;
+            --surface-container: #efecf5;
+            --surface-container-high: #eae7ef;
+            --on-surface: #1b1b21;
+            --on-surface-variant: #454652;
+            --outline: #767683;
+            --outline-variant: #c6c5d4;
+            --white: #ffffff;
+            --glass-bg: rgba(255, 255, 255, 0.85);
+        }
+
+        /* ----- glass card ----- */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(26, 35, 126, 0.08);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .glass-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 48px rgba(26, 35, 126, 0.12);
+        }
+
+        /* ----- reveal animation ----- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(36px);
+            transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ----- header transition ----- */
+        header {
+            transition: height 0.3s ease, padding 0.3s ease, backdrop-filter 0.3s ease;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        header.scrolled {
+            height: 64px !important;
+            background: rgba(255, 255, 255, 0.92) !important;
+            box-shadow: 0 4px 24px rgba(0, 6, 102, 0.10);
+        }
+
+        /* ----- mobile menu slide ----- */
+        .mobile-menu {
+            transform: translateX(-100%);
+            transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+            background: #ffffff;
+            box-shadow: 4px 0 32px rgba(0, 0, 0, 0.08);
+        }
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+
+        /* ----- hero overlay ----- */
+        .admission-hero-overlay {
+            background: linear-gradient(135deg,
+                    rgba(0, 6, 102, 0.78) 0%,
+                    rgba(26, 35, 126, 0.55) 50%,
+                    rgba(0, 0, 0, 0.20) 100%);
+        }
+
+        /* ----- step card ----- */
+        .step-card {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.10);
+            backdrop-filter: blur(4px);
+            transition: all 0.3s ease;
+        }
+        .step-card:hover {
+            background: rgba(255, 255, 255, 0.16);
+            transform: translateY(-4px);
+        }
+
+        /* ----- class badge ----- */
+        .class-badge {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(4px);
+            transition: all 0.3s ease;
+            padding: 16px 20px;
+            border-radius: 16px;
+            text-align: center;
+        }
+        .class-badge:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-4px);
+        }
+        .class-badge .label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* ----- benefit card ----- */
+        .benefit-card {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(4px);
+            transition: all 0.3s ease;
+            padding: 20px 16px;
+            border-radius: 16px;
+            text-align: center;
+        }
+        .benefit-card:hover {
+            background: rgba(255, 255, 255, 0.14);
+            transform: translateY(-4px);
+        }
+
+        /* ----- seat status ----- */
+        .seat-status {
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+        }
+        .seat-open {
+            background: rgba(34, 197, 94, 0.20);
+            color: #22c55e;
+        }
+        .seat-limited {
+            background: rgba(234, 179, 8, 0.20);
+            color: #eab308;
+        }
+        .seat-closed {
+            background: rgba(239, 68, 68, 0.20);
+            color: #ef4444;
+        }
+
+       
+
+
+
+        /* ----- faq ----- */
+        .faq-item {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        }
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            width: 100%;
+            text-align: left;
+            font-weight: 600;
+            font-size: 1rem;
+            color: #1b1b21;
+            transition: color 0.2s;
+        }
+        .faq-question:hover {
+            color: #000666;
+        }
+        .faq-question .icon {
+            transition: transform 0.3s ease;
+            font-size: 1.5rem;
+            color: #000666;
+        }
+        .faq-question.open .icon {
+            transform: rotate(180deg);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+            padding: 0 0 0 0;
+            color: #454652;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .faq-answer.open {
+            max-height: 300px;
+            padding: 0 0 16px 0;
+        }
+
+        /* ----- misc ----- */
+        .font-headline-lg {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.75rem;
+            font-weight: 700;
+            line-height: 1.15;
+        }
+        .font-headline-md {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 600;
+            line-height: 1.25;
+        }
+        .font-headline-sm {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.35rem;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+        .font-body-lg {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+        .font-body-md {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+        .font-label-lg {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+        .font-label-sm {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.03em;
+        }
+
+        @media (max-width: 640px) {
+            .font-headline-lg {
+                font-size: 2rem;
+            }
+            .font-headline-md {
+                font-size: 1.6rem;
+            }
+            .font-body-lg {
+                font-size: 1rem;
+            }
+        }
+
+        *:focus-visible {
+            outline: 2px solid #fabd00;
+            outline-offset: 2px;
+            border-radius: 4px;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        button {
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-family: inherit;
+        }
+
+        .max-w-container {
+            max-width: 1280px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .px-responsive {
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        }
+        @media (min-width: 768px) {
+            .px-responsive {
+                padding-left: 3rem;
+                padding-right: 3rem;
+            }
+        }
+
+        .float-btn {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .float-btn:hover {
+            transform: scale(1.10);
+        }
+
+        .cta-glow {
+            box-shadow: 0 0 30px rgba(250, 189, 0, 0.25);
+        }
+        .cta-glow:hover {
+            box-shadow: 0 0 50px rgba(250, 189, 0, 0.40);
+        }
+
+        /* timeline connector */
+        .step-connector {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.20);
+        }
+        @media (max-width: 768px) {
+            .step-connector {
+                display: none;
+            }
+        }
+    </style>
+
+<style>
+
+.enquiry-card{
+    background:rgba(255,255,255,.10);
+    backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:24px;
+    padding:32px;
+    box-shadow:0 20px 50px rgba(0,0,0,.20);
+}
+
+.input-group{
+    position:relative;
+}
+
+.input-icon{
+    position:absolute;
+    left:16px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#000666;
+    z-index:2;
+    font-size:22px;
+}
+
+.premium-input,
+.premium-select{
+    width:100%;
+    height:56px;
+    background:#fff;
+    border:1px solid #e4e4ec;
+    border-radius:14px;
+    padding-left:52px;
+    padding-right:18px;
+    color:#1b1b21;
+    transition:.3s;
+}
+
+.premium-textarea{
+    width:100%;
+    background:#fff;
+    border:1px solid #e4e4ec;
+    border-radius:14px;
+    padding:16px;
+    color:#1b1b21;
+}
+
+.premium-input:focus,
+.premium-select:focus,
+.premium-textarea:focus{
+    outline:none;
+    border-color:#fabd00;
+    box-shadow:0 0 0 4px rgba(250,189,0,.20);
+}
+
+.premium-select{
+    appearance:none;
+    -webkit-appearance:none;
+    padding-right:50px;
+}
+
+.select-wrapper{
+    position:relative;
+}
+
+.select-icon{
+    position:absolute;
+    right:15px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#000666;
+    pointer-events:none;
+}
+
+.date-input{
+    color:#1b1b21 !important;
+}
+
+.date-input::-webkit-calendar-picker-indicator{
+    cursor:pointer;
+    opacity:1;
+}
+
+.premium-btn{
+    width:100%;
+    height:58px;
+    margin-top:24px;
+    border:none;
+    border-radius:14px;
+    font-weight:700;
+    font-size:16px;
+    color:#111;
+    background:linear-gradient(135deg,#fabd00,#ffd95a);
+    box-shadow:0 12px 30px rgba(250,189,0,.35);
+    transition:.35s;
+}
+
+.premium-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 18px 40px rgba(250,189,0,.45);
+}
+
+.premium-btn:active{
+    transform:translateY(0);
+}
+
+</style>
+
+</head>
+
+<body class="bg-[#fbf8ff] text-[#1b1b21] antialiased">
+
+    <!-- ====== HEADER ====== -->
+    <header id="main-header" class="fixed top-0 w-full z-50 h-20 bg-white/80 border-b border-white/20 transition-all duration-300">
+        <div class="max-w-container mx-auto px-responsive flex justify-between items-center h-full">
+
+            <a href="index.html" class="flex items-center gap-3 no-underline group" aria-label="Go to Home">
+                <div class="w-9 h-9 rounded-full overflow-hidden">
+                    <img src="images/logo.png" alt="Aman School Logo" class="w-full h-full object-cover">
+                </div>
+                <span class="font-headline-md text-[#000666] tracking-tight group-hover:text-[#1a237e] transition-colors">
+                    Aman <span class="font-light">School</span>
+                </span>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-8">
+                <a href="index.html" class="text-[#454652] hover:text-[#000666] transition-colors duration-200 font-label-lg text-label-lg">Home</a>
+                <a href="about.html" class="text-[#454652] hover:text-[#000666] transition-colors duration-200 font-label-lg text-label-lg">About</a>
+                <a href="admission.html" class="text-[#00639a] border-b-2 border-[#00639a] font-bold pb-1 font-label-lg text-label-lg">Admission</a>
+                <a href="contact.html" class="text-[#454652] hover:text-[#000666] transition-colors duration-200 font-label-lg text-label-lg">Contact</a>
+            </nav>
+
+            <div class="flex items-center gap-4">
+                <button id="hamburger-btn" class="md:hidden text-[#000666] p-2 rounded-full focus:ring-2 focus:ring-[#000666]" aria-label="Menu" aria-expanded="false">
+                    <span class="material-symbols-outlined text-3xl">menu</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ====== MOBILE MENU ====== -->
+    <div id="mobile-menu" class="mobile-menu fixed top-0 left-0 w-72 h-full bg-white z-50 shadow-2xl pt-24 px-6 flex flex-col gap-5 overflow-y-auto" aria-hidden="true">
+        <button id="close-menu" class="absolute top-4 right-4 text-[#1b1b21] p-2 rounded-full hover:bg-gray-100" aria-label="Close menu">
+            <span class="material-symbols-outlined">close</span>
+        </button>
+        <a href="index.html" class="text-[#1b1b21] font-label-lg text-label-lg py-3 border-b border-[#c6c5d4]">Home</a>
+        <a href="about.html" class="text-[#1b1b21] font-label-lg text-label-lg py-3 border-b border-[#c6c5d4]">About</a>
+        <a href="admission.html" class="text-[#1b1b21] font-label-lg text-label-lg py-3 border-b border-[#c6c5d4]">Admission</a>
+        <a href="contact.html" class="text-[#1b1b21] font-label-lg text-label-lg py-3 border-b border-[#c6c5d4]">Contact</a>
+        <a href="#enquiry" class="bg-[#fabd00] text-[#1a1a1a] px-6 py-3 rounded-full font-label-lg text-label-lg text-center mt-4 shadow-lg shadow-[#fabd00]/30 hover:scale-105 transition-all">
+            Apply Now
+        </a>
+    </div>
+    <div id="menu-overlay" class="fixed inset-0 bg-black/40 z-40 hidden"></div>
+
+    <!-- ====== ADMISSION HERO ====== -->
+    <section id="admissions" class="relative min-h-[460px] md:min-h-[520px] flex items-center mt-20 overflow-hidden">
+        <div class="absolute inset-0 -z-10">
+            <img src="images/admissionbg.jpg" alt="Admissions Open at Aman School" class="w-full h-full object-cover" loading="lazy" />
+            <div class="admission-hero-overlay absolute inset-0"></div>
+        </div>
+        <div class="max-w-container mx-auto px-responsive w-full py-12 md:py-16">
+            <div class="max-w-3xl reveal">
+                <span class="text-[#fabd00] font-label-lg text-label-lg block mb-3 tracking-widest">Admissions 2026-27</span>
+                <h1 class="font-headline-lg text-white leading-tight mb-4">
+                    Admissions Open <br class="sm:hidden" />2026-27
+                </h1>
+                <p class="font-body-lg text-white/90 max-w-2xl leading-relaxed">
+                    Give your child the opportunity to learn, grow, and succeed in a nurturing academic environment. Admissions are now open for Nursery to Senior Classes.
+                </p>
+                <div class="inline-block mt-3 bg-[#fabd00]/20 backdrop-blur-sm text-[#fabd00] font-bold px-5 py-2 rounded-full text-sm border border-[#fabd00]/30">
+                    ⚡ Limited Seats Available
+                </div>
+                <div class="flex flex-wrap gap-3 mt-6">
+                    <a href="#enquiry" class="inline-flex items-center gap-2 bg-[#fabd00] text-[#1a1a1a] px-7 py-3.5 rounded-xl font-bold hover:scale-105 transition-transform shadow-lg shadow-[#fabd00]/30 cta-glow">
+                        <span class="material-symbols-outlined text-xl">assignment</span> Book Admission Counselling
+                    </a>
+                   <!--- <a href="#enquiry" class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm text-white px-7 py-3.5 rounded-xl font-bold border border-white/30 hover:bg-white/30 transition-all">
+                        <span class="material-symbols-outlined text-xl">support_agent</span> Book Admission Counselling
+                    </a>-->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== ADMISSION OVERVIEW ====== -->
+    <section class="py-16 max-w-container mx-auto px-responsive">
+        <div class="grid md:grid-cols-5 gap-12 md:gap-16 items-center">
+            <div class="md:col-span-3 reveal">
+                <span class="text-[#00639a] font-label-lg text-label-lg block mb-2">Overview</span>
+                <h2 class="font-headline-lg text-[#000666] mb-4 leading-tight">
+                    Start Your Admission Journey
+                </h2>
+                <p class="font-body-lg text-[#454652] leading-relaxed">
+                    The admission process at Aman School is simple and transparent. Parents can submit an enquiry, interact with the admission team, and complete the admission formalities in a few easy steps.
+                </p>
+                <div class="flex flex-wrap gap-4 mt-6">
+                    <div class="flex items-center gap-3 bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2.5 shadow-sm border border-gray-100">
+                        <span class="material-symbols-outlined text-[#000666]">check_circle</span>
+                        <span class="text-sm font-medium">Simple Process</span>
+                    </div>
+                    <div class="flex items-center gap-3 bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2.5 shadow-sm border border-gray-100">
+                        <span class="material-symbols-outlined text-[#000666]">support_agent</span>
+                        <span class="text-sm font-medium">Dedicated Support</span>
+                    </div>
+                    <div class="flex items-center gap-3 bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2.5 shadow-sm border border-gray-100">
+                        <span class="material-symbols-outlined text-[#000666]">verified</span>
+                        <span class="text-sm font-medium">Transparent</span>
+                    </div>
+                </div>
+            </div>
+            <div class="md:col-span-2 relative reveal" style="transition-delay:100ms">
+                <div class="absolute -inset-4 bg-[#fabd00]/20 rounded-3xl -z-10 rotate-2"></div>
+                <div class="bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-xl border border-white/60">
+                    <div class="flex items-center gap-4 border-b border-gray-100 pb-4 mb-4">
+                        <span class="material-symbols-outlined text-[#fabd00] text-3xl">celebration</span>
+                        <div>
+                            <p class="font-headline-sm text-[#000666] text-sm">Established 2006</p>
+                            <p class="font-label-sm text-[#454652] text-xs">Years of Excellence</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4 border-b border-gray-100 pb-4 mb-4">
+                        <span class="material-symbols-outlined text-[#fabd00] text-3xl">groups</span>
+                        <div>
+                            <p class="font-headline-sm text-[#000666] text-sm">1200+ Students</p>
+                            <p class="font-label-sm text-[#454652] text-xs">Growing Community</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <span class="material-symbols-outlined text-[#fabd00] text-3xl">school</span>
+                        <div>
+                            <p class="font-headline-sm text-[#000666] text-sm">Nursery – Class 12</p>
+                            <p class="font-label-sm text-[#454652] text-xs">RBSE Curriculum</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== CLASSES OPEN ====== -->
+    <section class="py-16 bg-[#000666] text-white">
+        <div class="max-w-container mx-auto px-responsive">
+            <div class="text-center mb-12 reveal">
+                <span class="text-[#fabd00] font-label-lg text-label-lg block mb-1">Admissions Available For</span>
+                <h2 class="font-headline-lg text-white">Classes Open for Admission</h2>
+                <p class="font-body-lg text-white/70 max-w-2xl mx-auto mt-2">We welcome students across all grades. Enrol your child in the class that matches their age and academic readiness.</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 reveal">
+                <div class="class-badge">
+                    <span class="material-symbols-outlined text-[#fabd00] text-3xl block mb-1">child_care</span>
+                    <span class="font-headline-sm text-white text-lg block">Nursery</span>
+                    <span class="label">Age 3+</span>
+                </div>
+                <div class="class-badge" style="transition-delay:30ms">
+                    <span class="material-symbols-outlined text-[#fabd00] text-3xl block mb-1">child_friendly</span>
+                    <span class="font-headline-sm text-white text-lg block">LKG</span>
+                    <span class="label">Age 4+</span>
+                </div>
+                <div class="class-badge" style="transition-delay:60ms">
+                    <span class="material-symbols-outlined text-[#fabd00] text-3xl block mb-1">child_friendly</span>
+                    <span class="font-headline-sm text-white text-lg block">UKG</span>
+                    <span class="label">Age 5+</span>
+                </div>
+                <div class="class-badge" style="transition-delay:90ms">
+                    <span class="material-symbols-outlined text-[#fabd00] text-3xl block mb-1">menu_book</span>
+                    <span class="font-headline-sm text-white text-lg block">Class I – V</span>
+                    <span class="label">Primary</span>
+                </div>
+                <div class="class-badge" style="transition-delay:120ms">
+                    <span class="material-symbols-outlined text-[#fabd00] text-3xl block mb-1">library_books</span>
+                    <span class="font-headline-sm text-white text-lg block">Class VI – VIII</span>
+                    <span class="label">Middle</span>
+                </div>
+                <div class="class-badge" style="transition-delay:150ms">
+                    <span class="material-symbols-outlined text-[#fabd00] text-3xl block mb-1">school</span>
+                    <span class="font-headline-sm text-white text-lg block">Class IX – X</span>
+                    <span class="label">Secondary</span>
+                </div>
+                <div class="class-badge" style="transition-delay:180ms">
+                    <span class="material-symbols-outlined text-[#fabd00] text-3xl block mb-1">auto_stories</span>
+                    <span class="font-headline-sm text-white text-lg block">Class XI – XII</span>
+                    <span class="label">Senior Secondary</span>
+                </div>
+                <div class="class-badge bg-[#fabd00]/20 border-[#fabd00]/30" style="transition-delay:210ms">
+                    <span class="material-symbols-outlined text-[#fabd00] text-3xl block mb-1">stars</span>
+                    <span class="font-headline-sm text-white text-lg block">All Classes</span>
+                    <span class="label text-[#fabd00]">Limited Seats</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== ADMISSION PROCESS ====== -->
+    <section class="py-16 max-w-container mx-auto px-responsive">
+        <div class="text-center mb-12 reveal">
+            <span class="text-[#00639a] font-label-lg text-label-lg block mb-1">How to Apply</span>
+            <h2 class="font-headline-lg text-[#000666]">Admission Process</h2>
+            <p class="font-body-lg text-[#454652] max-w-2xl mx-auto mt-2">Follow these simple steps to secure your child's seat at Aman School.</p>
+        </div>
+
+        <div class="grid md:grid-cols-5 gap-4 md:gap-3 reveal">
+            <!-- Step 1 -->
+            <div class="relative">
+                <div class="glass-card p-6 rounded-2xl text-center h-full hover:-translate-y-2 transition-all">
+                    <div class="w-14 h-14 bg-[#000666] text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-lg shadow-[#000666]/20">1</div>
+                    <span class="material-symbols-outlined text-[#fabd00] text-3xl block mb-2">assignment</span>
+                    <h4 class="font-headline-sm text-[#000666] text-sm mb-1">Submit Enquiry</h4>
+                    <p class="font-body-md text-[#454652] text-sm">Fill the online admission enquiry form.</p>
+                </div>
+                <div class="step-connector hidden md:block absolute top-1/2 -right-4 transform -translate-y-1/2">
+                    <span class="material-symbols-outlined text-2xl text-gray-300">arrow_forward</span>
+                </div>
+            </div>
+            <!-- Step 2 -->
+            <div class="relative">
+                <div class="glass-card p-6 rounded-2xl text-center h-full hover:-translate-y-2 transition-all" style="transition-delay:50ms">
+                    <div class="w-14 h-14 bg-[#00639a] text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-lg shadow-[#00639a]/20">2</div>
+                    <span class="material-symbols-outlined text-[#fabd00] text-3xl block mb-2">call</span>
+                    <h4 class="font-headline-sm text-[#000666] text-sm mb-1">Receive Call</h4>
+                    <p class="font-body-md text-[#454652] text-sm">Admission team contacts you.</p>
+                </div>
+                <div class="step-connector hidden md:block absolute top-1/2 -right-4 transform -translate-y-1/2">
+                    <span class="material-symbols-outlined text-2xl text-gray-300">arrow_forward</span>
+                </div>
+            </div>
+            <!-- Step 3 -->
+            <div class="relative">
+                <div class="glass-card p-6 rounded-2xl text-center h-full hover:-translate-y-2 transition-all" style="transition-delay:100ms">
+                    <div class="w-14 h-14 bg-[#1a237e] text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-lg shadow-[#1a237e]/20">3</div>
+                    <span class="material-symbols-outlined text-[#fabd00] text-3xl block mb-2">forum</span>
+                    <h4 class="font-headline-sm text-[#000666] text-sm mb-1">Counselling</h4>
+                    <p class="font-body-md text-[#454652] text-sm">Attend admission counselling &amp; interaction.</p>
+                </div>
+                <div class="step-connector hidden md:block absolute top-1/2 -right-4 transform -translate-y-1/2">
+                    <span class="material-symbols-outlined text-2xl text-gray-300">arrow_forward</span>
+                </div>
+            </div>
+            <!-- Step 4 -->
+            <div class="relative">
+                <div class="glass-card p-6 rounded-2xl text-center h-full hover:-translate-y-2 transition-all" style="transition-delay:150ms">
+                    <div class="w-14 h-14 bg-[#251900] text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-lg shadow-[#251900]/20">4</div>
+                    <span class="material-symbols-outlined text-[#fabd00] text-3xl block mb-2">edit_document</span>
+                    <h4 class="font-headline-sm text-[#000666] text-sm mb-1">Complete Formalities</h4>
+                    <p class="font-body-md text-[#454652] text-sm">Submit documents &amp; complete admission.</p>
+                </div>
+                <div class="step-connector hidden md:block absolute top-1/2 -right-4 transform -translate-y-1/2">
+                    <span class="material-symbols-outlined text-2xl text-gray-300">arrow_forward</span>
+                </div>
+            </div>
+            <!-- Step 5 -->
+            <div class="relative">
+                <div class="glass-card p-6 rounded-2xl text-center h-full hover:-translate-y-2 transition-all" style="transition-delay:200ms">
+                    <div class="w-14 h-14 bg-[#fabd00] text-[#1a1a1a] rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-lg shadow-[#fabd00]/30">5</div>
+                    <span class="material-symbols-outlined text-[#fabd00] text-3xl block mb-2">verified</span>
+                    <h4 class="font-headline-sm text-[#000666] text-sm mb-1">Secure Seat</h4>
+                    <p class="font-body-md text-[#454652] text-sm">Confirm admission &amp; secure your seat.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== ELIGIBILITY + DATES + SEATS ====== -->
+    <section class="py-16 bg-[#efecf5]">
+        <div class="max-w-container mx-auto px-responsive">
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Eligibility -->
+                <div class="glass-card p-8 rounded-2xl reveal">
+                    <span class="material-symbols-outlined text-[#000666] text-3xl block mb-3">rule</span>
+                    <h3 class="font-headline-md text-[#000666] text-xl mb-3">Eligibility Criteria</h3>
+                    <p class="font-body-md text-[#454652] leading-relaxed">
+                        Admission is granted based on age eligibility and seat availability for the respective class.
+                    </p>
+                    <p class="font-body-md text-[#454652] leading-relaxed mt-3">
+                        Students seeking admission to higher classes may be required to participate in an academic interaction as per school guidelines.
+                    </p>
+                </div>
+                <!-- Dates -->
+                <div class="glass-card p-8 rounded-2xl reveal" style="transition-delay:50ms">
+                    <span class="material-symbols-outlined text-[#000666] text-3xl block mb-3">event</span>
+                    <h3 class="font-headline-md text-[#000666] text-xl mb-3">Important Dates</h3>
+                    <div class="space-y-3">
+                        <div>
+                            <p class="font-label-sm text-[#00639a] text-xs">Admission Forms Available</p>
+                            <p class="font-headline-sm text-[#000666] text-base">Open Now</p>
+                        </div>
+                        <div>
+                            <p class="font-label-sm text-[#00639a] text-xs">Counselling Sessions</p>
+                            <p class="font-headline-sm text-[#000666] text-base">Ongoing</p>
+                        </div>
+                        <div>
+                            <p class="font-label-sm text-[#00639a] text-xs">New Session Commencement</p>
+                            <p class="font-headline-sm text-[#000666] text-base">April 2026</p>
+                        </div>
+                        <p class="font-label-sm text-[#454652] text-xs mt-2 border-t border-gray-200 pt-3">Admissions may close once seats are filled.</p>
+                    </div>
+                </div>
+                <!-- Seats -->
+                <div class="glass-card p-8 rounded-2xl reveal" style="transition-delay:100ms">
+                    <span class="material-symbols-outlined text-[#000666] text-3xl block mb-3">seat</span>
+                    <h3 class="font-headline-md text-[#000666] text-xl mb-3">Seat Availability</h3>
+                    <p class="font-body-md text-[#454652] text-sm leading-relaxed mb-4">
+                        Admissions are processed on a first-come, first-served basis. Parents are encouraged to complete the admission process at the earliest to avoid waiting lists.
+                    </p>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between items-center border-b border-gray-100 pb-2">
+                            <span class="text-[#1b1b21]">Nursery</span>
+                            <span class="seat-status seat-limited">Few Seats</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b border-gray-100 pb-2">
+                            <span class="text-[#1b1b21]">LKG</span>
+                            <span class="seat-status seat-open">Open</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b border-gray-100 pb-2">
+                            <span class="text-[#1b1b21]">UKG</span>
+                            <span class="seat-status seat-open">Open</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b border-gray-100 pb-2">
+                            <span class="text-[#1b1b21]">Classes I – VIII</span>
+                            <span class="seat-status seat-open">Open</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-[#1b1b21]">Classes IX – XII</span>
+                            <span class="seat-status seat-limited">Subject to Availability</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== ADMISSION BENEFITS ====== -->
+    <section class="py-16 max-w-container mx-auto px-responsive">
+        <div class="text-center mb-12 reveal">
+            <span class="text-[#00639a] font-label-lg text-label-lg block mb-1">What Students Receive</span>
+            <h2 class="font-headline-lg text-[#000666]">Admission Benefits</h2>
+            <p class="font-body-lg text-[#454652] max-w-2xl mx-auto mt-2">Every student at Aman School receives comprehensive support for academic and personal growth.</p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 reveal">
+            <div class="benefit-card">
+                <span class="material-symbols-outlined text-[#fabd00] text-3xl block mb-2">school</span>
+                <p class="font-headline-sm text-[#000666] text-sm font-semibold">Academic Support</p>
+            </div>
+            <div class="benefit-card" style="transition-delay:30ms">
+                <span class="material-symbols-outlined text-[#fabd00] text-3xl block mb-2">assessment</span>
+                <p class="font-headline-sm text-[#000666] text-sm font-semibold">Continuous Assessment</p>
+            </div>
+            <div class="benefit-card" style="transition-delay:60ms">
+                <span class="material-symbols-outlined text-[#fabd00] text-3xl block mb-2">trending_up</span>
+                <p class="font-headline-sm text-[#000666] text-sm font-semibold">Student Development Programs</p>
+            </div>
+            <div class="benefit-card" style="transition-delay:90ms">
+                <span class="material-symbols-outlined text-[#fabd00] text-3xl block mb-2">sports_tennis</span>
+                <p class="font-headline-sm text-[#000666] text-sm font-semibold">Co-Curricular Participation</p>
+            </div>
+            <div class="benefit-card" style="transition-delay:120ms">
+                <span class="material-symbols-outlined text-[#fabd00] text-3xl block mb-2">psychology</span>
+                <p class="font-headline-sm text-[#000666] text-sm font-semibold">Career Guidance Support</p>
+            </div>
+            <div class="benefit-card" style="transition-delay:150ms">
+                <span class="material-symbols-outlined text-[#fabd00] text-3xl block mb-2">chat</span>
+                <p class="font-headline-sm text-[#000666] text-sm font-semibold">Regular Parent Communication</p>
+            </div>
+            <div class="benefit-card" style="transition-delay:180ms">
+                <span class="material-symbols-outlined text-[#fabd00] text-3xl block mb-2">security</span>
+                <p class="font-headline-sm text-[#000666] text-sm font-semibold">Safe Learning Environment</p>
+            </div>
+            <div class="benefit-card bg-[#fabd00]/10 border-[#fabd00]/20" style="transition-delay:210ms">
+                <span class="material-symbols-outlined text-[#fabd00] text-3xl block mb-2">stars</span>
+                <p class="font-headline-sm text-[#000666] text-sm font-semibold">Holistic Growth</p>
+            </div>
+        </div>
+    </section>
+
+  <!-- ====== ENQUIRY FORM + INTRO ====== -->
+
+<section id="enquiry" class="py-20 bg-[#000666] text-white relative overflow-hidden">
+<!-- Background Glow -->
+<div class="absolute top-0 left-0 w-72 h-72 bg-[#fabd00]/10 blur-[120px] rounded-full"></div>
+<div class="absolute bottom-0 right-0 w-72 h-72 bg-white/5 blur-[120px] rounded-full"></div>
+
+<div class="max-w-container mx-auto px-responsive relative z-10">
+
+    <div class="grid md:grid-cols-5 gap-12 items-start">
+
+        <!-- LEFT CONTENT -->
+        <div class="md:col-span-2 reveal">
+
+            <span class="inline-block px-4 py-2 rounded-full bg-[#fabd00]/15 text-[#fabd00] font-semibold text-sm mb-4">
+                Request Information
+            </span>
+
+            <h2 class="font-headline-lg text-white mb-5 leading-tight">
+                Request Admission Information
+            </h2>
+
+            <p class="font-body-lg text-white/80 leading-relaxed">
+                Fill out the enquiry form and our admission counsellor will contact you shortly with complete admission details, seat availability, fee information and admission guidance.
+            </p>
+
+            <div class="mt-8 space-y-4">
+
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined text-[#fabd00]">
+                        verified
+                    </span>
+                    <span>Personalised Counselling</span>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined text-[#fabd00]">
+                        payments
+                    </span>
+                    <span>Fee Structure Details</span>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined text-[#fabd00]">
+                        event_available
+                    </span>
+                    <span>Seat Availability Updates</span>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined text-[#fabd00]">
+                        school
+                    </span>
+                    <span>Campus Visit Scheduling</span>
+                </div>
+
+            </div>
+
+            <div class="mt-8 pt-6 border-t border-white/10">
+
+                <p class="text-sm text-white/50 uppercase tracking-wider mb-2">
+                    Admission Helpdesk
+                </p>
+
+                <a href="tel:+919929747471"
+                   class="inline-flex items-center gap-3 text-[#fabd00] text-xl font-bold hover:text-white transition-all">
+
+                    <span class="material-symbols-outlined">
+                        call
+                    </span>
+
+                    +91 99297 47471
+
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- FORM -->
+        <div class="md:col-span-3 reveal" style="transition-delay:100ms">
+
+            <div class="enquiry-card">
+
+                <h3 class="text-2xl font-bold text-white mb-2">
+                    Admission Enquiry Form
+                </h3>
+
+                <p class="text-white/70 mb-6">
+                    Complete the form and our team will get in touch shortly.
+                </p>
+
+                <form id="admission-form"
+                      onsubmit="event.preventDefault(); alert('Thank you for your enquiry! Our admission counsellor will contact you shortly.');">
+
+                    <div class="grid sm:grid-cols-2 gap-4">
+
+                        <div class="input-group">
+                           	<input
+                                type="text"
+                                id="student-name"
+                                class="form-input premium-input"
+                                placeholder="Student Name"
+                                required>
+                        </div>
+
+                        <div class="input-group select-wrapper">
+
+                            <select
+                                id="class-applying"
+                                class="form-input premium-select"
+                                required>
+
+                                <option value="">Select Class</option>
+                                <option>Nursery</option>
+                                <option>LKG</option>
+                                <option>UKG</option>
+                                <option>Class I</option>
+                                <option>Class II</option>
+                                <option>Class III</option>
+                                <option>Class IV</option>
+                                <option>Class V</option>
+                                <option>Class VI</option>
+                                <option>Class VII</option>
+                                <option>Class VIII</option>
+                                <option>Class IX</option>
+                                <option>Class X</option>
+                                <option>Class XI</option>
+                                <option>Class XII</option>
+
+                            </select>
+
+                            <span class="material-symbols-outlined select-icon">
+                                expand_more
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <div class="mt-4 input-group">
+			 <input
+                            type="date"
+                            id="dob"
+                            class="form-input premium-input date-input"
+                            required>
+
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 gap-4 mt-4">
+
+                        <div class="input-group">
+                            <input
+                                type="text"
+                                id="parent-name"
+                                class="form-input premium-input"
+                                placeholder="Parent Name"
+                                required>
+
+                        </div>
+
+                        <div class="input-group">
+
+                            <input
+                                type="tel"
+                                id="mobile"
+                                class="form-input premium-input"
+                                placeholder="Mobile Number"
+                                required>
+
+                        </div>
+
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 gap-4 mt-4">
+
+                        <div class="input-group">
+                            <input
+                                type="email"
+                                id="email"
+                                class="form-input premium-input"
+                                placeholder="Email Address">
+
+                        </div>
+
+                        <div class="input-group">
+                            <input
+                                type="text"
+                                id="city"
+                                class="form-input premium-input"
+                                placeholder="City / Village">
+
+                        </div>
+
+                    </div>
+
+                    <div class="mt-4">
+
+                        <textarea
+                            id="message"
+                            rows="4"
+                            class="form-input premium-textarea"
+                            placeholder="Any specific questions or requests..."></textarea>
+
+                    </div>
+
+                    <button type="submit" class="premium-btn">
+                        Request Admission Details
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+</section>
+
+
+
+
+    <!-- ====== FAQ ====== -->
+    <section class="py-16 max-w-container mx-auto px-responsive">
+        <div class="text-center mb-12 reveal">
+            <span class="text-[#00639a] font-label-lg text-label-lg block mb-1">Common Questions</span>
+            <h2 class="font-headline-lg text-[#000666]">Frequently Asked Questions</h2>
+            <p class="font-body-lg text-[#454652] max-w-2xl mx-auto mt-2">Find answers to the most common admission-related questions.</p>
+        </div>
+
+        <div class="max-w-3xl mx-auto glass-card rounded-2xl p-6 md:p-8 reveal">
+            <!-- FAQ 1 -->
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    <span>Can I apply online?</span>
+                    <span class="icon material-symbols-outlined">expand_more</span>
+                </button>
+                <div class="faq-answer">
+                    Yes, parents can submit an online admission enquiry form through our website. Our admission team will contact you after receiving your enquiry.
+                </div>
+            </div>
+            <!-- FAQ 2 -->
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    <span>Is admission open for all classes?</span>
+                    <span class="icon material-symbols-outlined">expand_more</span>
+                </button>
+                <div class="faq-answer">
+                    Admissions are subject to seat availability. We accept applications for all classes from Nursery to Class 12, subject to seat availability.
+                </div>
+            </div>
+            <!-- FAQ 3 -->
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    <span>How will I know the admission status?</span>
+                    <span class="icon material-symbols-outlined">expand_more</span>
+                </button>
+                <div class="faq-answer">
+                    Our admission team will contact you after reviewing your enquiry. You can also reach out to the admission helpdesk for status updates.
+                </div>
+            </div>
+            <!-- FAQ 4 -->
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    <span>Can I visit the campus before admission?</span>
+                    <span class="icon material-symbols-outlined">expand_more</span>
+                </button>
+                <div class="faq-answer">
+                    Yes, admission counselling and campus visits can be scheduled. Please contact our admission team to book a visit.
+                </div>
+            </div>
+            <!-- FAQ 5 -->
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    <span>Is there any admission deadline?</span>
+                    <span class="icon material-symbols-outlined">expand_more</span>
+                </button>
+                <div class="faq-answer">
+                    Admissions remain open until available seats are filled. We encourage early applications to secure a seat.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== FINAL CTA ====== -->
+    <section class="py-16 bg-[#000666] text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-[#fabd00] rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 left-0 w-80 h-80 bg-[#00639a] rounded-full blur-3xl"></div>
+        </div>
+        <div class="max-w-container mx-auto px-responsive text-center relative z-10">
+            <div class="reveal">
+                <span class="text-[#fabd00] font-label-lg text-label-lg block mb-2">Secure Your Child's Future</span>
+                <h2 class="font-headline-lg text-white mb-4 leading-tight">
+                    Secure Your Child's <br class="sm:hidden" />Admission Today
+                </h2>
+                <p class="font-body-lg text-white/80 max-w-2xl mx-auto leading-relaxed">
+                    Seats are limited and admissions are being processed continuously. Complete your enquiry today and connect with our admission team for personalized guidance.
+                </p>
+                <div class="flex flex-wrap justify-center gap-4 mt-6">
+                    <a href="#enquiry" class="inline-flex items-center gap-2 bg-[#fabd00] text-[#1a1a1a] px-8 py-4 rounded-xl font-bold hover:scale-105 transition-transform shadow-lg shadow-[#fabd00]/30 cta-glow">
+                        <span class="material-symbols-outlined text-xl">assignment</span> Apply Now
+                    </a>
+                    <a href="tel:+919950399752" class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm text-white px-8 py-4 rounded-xl font-bold border border-white/30 hover:bg-white/30 transition-all">
+                        <span class="material-symbols-outlined text-xl">support_agent</span> Talk to Admission Counsellor
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== FOOTER ====== -->
+    <footer class="bg-[#1a237e] text-white/80 rounded-t-xl py-16">
+        <div class="max-w-container mx-auto px-responsive grid grid-cols-1 md:grid-cols-4 gap-10">
+
+            <div class="space-y-3">
+                <a href="index.html" class="flex items-center gap-3 no-underline">
+                    <div class="w-9 h-9 rounded-full overflow-hidden">
+                    <img src="images/logo.png" alt="Aman School Logo" class="w-full h-full object-cover">
+                </div>
+                    <span class="font-headline-sm text-white text-xl">Aman School</span>
+                </a>
+                <p class="font-body-md text-white/60 text-sm leading-relaxed">"A place where excellence is nurtured, potential is unlocked, and future leaders are shaped."</p>
+                <div class="flex gap-4 mt-2">
+                    <a href="#" aria-label="Twitter" class="text-white/50 hover:text-[#fabd00] transition-colors"><span class="material-symbols-outlined text-2xl">alternate_email</span></a>
+                    <a href="#" aria-label="Facebook" class="text-white/50 hover:text-[#fabd00] transition-colors"><span class="material-symbols-outlined text-2xl">public</span></a>
+                    <a href="#" aria-label="LinkedIn" class="text-white/50 hover:text-[#fabd00] transition-colors"><span class="material-symbols-outlined text-2xl">work</span></a>
+                </div>
+            </div>
+
+            <div class="flex flex-col gap-2">
+                <span class="font-label-lg text-label-lg text-white mb-2">Quick Links</span>
+                <a href="about.html" class="hover:text-white hover:translate-x-1 transition-all duration-200 text-sm">About Us</a>
+                <a href="#admissions" class="hover:text-white hover:translate-x-1 transition-all duration-200 text-sm">Admission</a>
+                <a href="contact.html" class="hover:text-white hover:translate-x-1 transition-all duration-200 text-sm">Contact</a>
+            </div>
+
+            <div class="flex flex-col gap-3">
+    
+    <div>
+        <span class="font-label-lg text-label-lg text-white mb-2 block">
+            Opening Hours
+        </span>
+
+        <div class="text-sm text-white/70 space-y-0.5">
+            <p>Monday – Friday &nbsp; 08:30 AM – 02:00 PM</p>
+            <p>Saturday &nbsp; 08:30 AM – 02:00 PM</p>
+            <p class="text-[#fabd00] font-medium">Sunday &nbsp; Closed</p>
+        </div>
+    </div>
+                <div class="flex gap-4 text-xs text-white/40 mt-2">
+                    <a href="#PrivacyPolicy" class="hover:text-white transition-colors duration-200">Privacy Policy</a>
+                    <a href="#Terms" class="hover:text-white transition-colors duration-200">Terms &amp; Conditions</a>
+                </div>
+            </div>
+
+            <div>
+                <span class="font-label-lg text-label-lg text-white mb-2 block">Newsletter</span>
+                <p class="text-sm text-white/60 mb-3">Subscribe for school updates &amp; event invitations.</p>
+                <form id="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing!');">
+                    <div class="flex gap-2">
+                        <input type="email" id="newsletter-email" class="bg-white/10 border border-white/20 rounded-lg px-4 py-2.5 text-white w-full focus:outline-none focus:ring-2 focus:ring-[#fabd00] text-sm placeholder:text-white/40" placeholder="Email Address" aria-label="Email address" required />
+                        <button type="submit" class="bg-[#fabd00] text-[#1a1a1a] px-5 py-2.5 rounded-lg font-bold hover:scale-105 transition-transform focus:ring-2 focus:ring-white text-sm">Join</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="max-w-container mx-auto px-responsive mt-12 pt-5 border-t border-white/10 text-center">
+            <p class="font-label-sm text-sm text-white/40">© 2025 Aman Sr. Sec. School</p>
+        </div>
+    </footer>
+
+    <!-- ====== FLOATING ACTIONS ====== -->
+    <div class="fixed bottom-6 right-6 flex flex-col gap-3 z-50">
+        <a href="https://wa.me/919929747471" target="_blank" rel="noopener noreferrer" class="float-btn bg-[#25D366] text-white shadow-xl hover:shadow-2xl" aria-label="Chat on WhatsApp">
+            <span class="material-symbols-outlined text-2xl">chat</span>
+        </a>
+        <button id="back-to-top" class="float-btn bg-[#000666] text-white shadow-xl hover:shadow-2xl opacity-0 pointer-events-none transition-opacity duration-300" aria-label="Back to top">
+            <span class="material-symbols-outlined text-2xl">arrow_upward</span>
+        </button>
+    </div>
+
+    <!-- ====== SCRIPTS ====== -->
+    <script>
+        // ----- Scroll Reveal -----
+        (function revealOnScroll() {
+            const els = document.querySelectorAll('.reveal');
+            if (!els.length) return;
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+            els.forEach(el => observer.observe(el));
+        })();
+
+        // ----- Back to Top -----
+        (function backToTop() {
+            const btn = document.getElementById('back-to-top');
+            if (!btn) return;
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 500) {
+                    btn.classList.remove('opacity-0', 'pointer-events-none');
+                    btn.style.pointerEvents = 'auto';
+                } else {
+                    btn.classList.add('opacity-0', 'pointer-events-none');
+                    btn.style.pointerEvents = 'none';
+                }
+            });
+            btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        })();
+
+        // ----- Header shrink -----
+        (function headerShrink() {
+            const header = document.getElementById('main-header');
+            if (!header) return;
+            function update() {
+                if (window.scrollY > 40) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            }
+            window.addEventListener('scroll', update);
+            update();
+        })();
+
+        // ----- Mobile Menu -----
+        (function mobileMenu() {
+            const hamburger = document.getElementById('hamburger-btn');
+            const menu = document.getElementById('mobile-menu');
+            const overlay = document.getElementById('menu-overlay');
+            const closeBtn = document.getElementById('close-menu');
+            if (!hamburger || !menu || !overlay || !closeBtn) return;
+
+            function open() {
+                menu.classList.add('open');
+                overlay.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+                hamburger.setAttribute('aria-expanded', 'true');
+                menu.setAttribute('aria-hidden', 'false');
+            }
+
+            function close() {
+                menu.classList.remove('open');
+                overlay.classList.add('hidden');
+                document.body.style.overflow = '';
+                hamburger.setAttribute('aria-expanded', 'false');
+                menu.setAttribute('aria-hidden', 'true');
+            }
+
+            hamburger.addEventListener('click', open);
+            closeBtn.addEventListener('click', close);
+            overlay.addEventListener('click', close);
+            document.querySelectorAll('#mobile-menu a').forEach(a => a.addEventListener('click', close));
+        })();
+
+        // ----- FAQ Accordion -----
+        function toggleFaq(btn) {
+            const answer = btn.nextElementSibling;
+            const icon = btn.querySelector('.icon');
+            const isOpen = answer.classList.contains('open');
+
+            document.querySelectorAll('.faq-answer').forEach(el => el.classList.remove('open'));
+            document.querySelectorAll('.faq-question .icon').forEach(el => el.classList.remove('open'));
+
+            if (!isOpen) {
+                answer.classList.add('open');
+                icon.classList.add('open');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const firstQuestion = document.querySelector('.faq-question');
+            if (firstQuestion) {
+                const answer = firstQuestion.nextElementSibling;
+                const icon = firstQuestion.querySelector('.icon');
+                if (answer && icon) {
+                    answer.classList.add('open');
+                    icon.classList.add('open');
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
