@@ -335,6 +335,82 @@
             }
         }
     </style>
+	<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+.hero-slider{
+    width:100%;
+    height:100vh;
+    overflow:hidden;
+}
+
+.hero-slider .swiper-slide{
+    width:100%;
+    height:100%;
+}
+
+.hero-slider .swiper-slide img{
+    width:100%;
+    height:100%;
+    display:block;
+    object-fit:cover;
+    object-position:center;
+}
+
+/* Arrows */
+
+.swiper-button-next,
+.swiper-button-prev{
+    color:#fff;
+    width:50px;
+    height:50px;
+    background:rgba(0,0,0,.4);
+    border-radius:50%;
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after{
+    font-size:20px;
+}
+
+/* Dots */
+
+.swiper-pagination-bullet{
+    width:12px;
+    height:12px;
+    background:#fff;
+    opacity:.7;
+}
+
+.swiper-pagination-bullet-active{
+    background:#ffb400;
+    opacity:1;
+}
+
+/* Tablet */
+
+@media(max-width:991px){
+
+    .hero-slider{
+        height:70vh;
+    }
+
+}
+.hero-slider .swiper-slide img{
+    object-fit:cover;
+}
+
+@media(max-width:768px){
+    .hero-slider .swiper-slide img{
+        object-fit:contain;
+        background:#fff;
+    }
+}
+</style>
 </head>
 
 <body class="bg-[#fbf8ff] text-[#1b1b21] antialiased">
@@ -404,61 +480,39 @@
         </div>
     </div>
 
+	<section class="hero-slider swiper">
+    <div class="swiper-wrapper">
 
+        <div class="swiper-slide">
+            <img src="images/heroslide1.jpg" alt="">
+        </div>
 
-<!-- ====== HERO SECTION ======--> 
-<section id="home" class="relative min-h-[85vh] md:min-h-[90vh] flex items-center overflow-hidden pt-24">
+        <div class="swiper-slide">
+            <img src="heroslide2.jpg" alt="">
+        </div>
 
-    <!-- Background Image 
-    <img 
-        alt="Indian school classroom with teacher writing on board and students seated"
-        class="absolute inset-0 w-full h-full object-cover scale-105"
-        loading="eager"
-        src="#"
-    />-->
+        <div class="swiper-slide">
+            <img src="heroslide3.jpg" alt="">
+        </div>
 
+        <div class="swiper-slide">
+            <img src="heroslide4.jpg" alt="">
+        </div>
 
+        <div class="swiper-slide">
+            <img src="heroslide5.jpg" alt="">
+        </div>
 
+    </div>
 
-    <!-- PREMIUM LIGHT OVERLAY (key improvement) -->
-    <div class="absolute inset-0 bg-black/25"></div>
-    <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent"></div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination"></div>
 
-    <div class="relative max-w-container mx-auto px-responsive w-full text-white py-12">
-
-        <div class="max-w-3xl reveal">
-
-            <!-- Badge -->
-            <span class="inline-block bg-[#fabd00]/25 backdrop-blur-sm text-[#fabd00] px-4 py-1.5 rounded-full mb-5 border border-[#fabd00]/30">
-                Excellence in Education
-            </span>
-
-            <!-- Heading -->
-            <h1 class="text-white font-bold leading-[1.1] mb-4 text-4xl md:text-6xl drop-shadow-2xl">
-                Where <span class="text-[#fabd00]">Vision</span>, Innovation & Excellence Unite
-            </h1>
-
-            <!-- Paragraph -->
-            <p class="text-white/90 text-lg md:text-xl max-w-2xl mb-8 leading-relaxed drop-shadow-md">
-                Aman School is a vibrant ecosystem where academic excellence, cutting-edge technology, and athletic achievement come together to shape future leaders.
-            </p>
-
-            <!-- Buttons -->
-            <div class="flex flex-wrap gap-4">
-
-                <a href="#contact"
-                   class="bg-[#fabd00] text-black px-8 py-3.5 rounded-xl font-semibold shadow-lg hover:scale-105 transition">
-                    Begin Application
-                </a>
-
-                <a href="#about"
-                   class="bg-white/10 backdrop-blur-md border border-white/30 text-white px-8 py-3.5 rounded-xl hover:bg-white/20 transition">
-                    Learn More
-                </a>
-
-            </div>
-
-<!-- Stats -->
+</section>
+	
+	<!-- Stats -->
+<section>
 	<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12 
             bg-white/80 backdrop-blur-md p-6 rounded-3xl 
             border border-gray-200 shadow-lg max-w-3xl">
@@ -488,21 +542,6 @@
         </div>
     </div>
 </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1017,6 +1056,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
         updateCounter();
     });
+});
+</script>
+	</script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+new Swiper('.hero-slider', {
+
+    loop:true,
+
+    autoplay:{
+        delay:5000,
+        disableOnInteraction:false,
+    },
+
+    speed:1000,
+
+    pagination:{
+        el:'.swiper-pagination',
+        clickable:true,
+    },
+
+    navigation:{
+        nextEl:'.swiper-button-next',
+        prevEl:'.swiper-button-prev',
+    },
+
+    effect:'slide',
+
 });
 </script>
 </body>
