@@ -405,85 +405,89 @@
 
 
 
-<!-- ====== HERO SECTION ====== -->
-<section id="home" class="relative min-h-screen flex items-center overflow-hidden pt-20 md:pt-24">
+<!-- ====== HERO SECTION ======--> 
+<section id="home" class="relative min-h-[85vh] md:min-h-[90vh] flex items-center overflow-hidden pt-24">
 
-    <!-- Background Image -->
-    <img
-        src="images/bg.jpg"
+    <!-- Background Image 
+    <img 
         alt="Indian school classroom with teacher writing on board and students seated"
+        class="absolute inset-0 w-full h-full object-cover scale-105"
         loading="eager"
-        class="absolute inset-0 w-full h-full object-cover object-center"
-    />
+        src="#"
+    />-->
 
-    <!-- Overlay -->
+
+
+
+    <!-- PREMIUM LIGHT OVERLAY (key improvement) -->
     <div class="absolute inset-0 bg-black/25"></div>
     <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent"></div>
 
-    <!-- Content -->
-    <div class="relative max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 w-full text-white py-12">
+    <div class="relative max-w-container mx-auto px-responsive w-full text-white py-12">
 
-        <div class="max-w-3xl">
+        <div class="max-w-3xl reveal">
 
             <!-- Badge -->
-            <span class="inline-block bg-[#fabd00]/25 backdrop-blur-sm text-[#fabd00] px-4 py-1.5 rounded-full mb-5 border border-[#fabd00]/30 text-sm md:text-base">
+            <span class="inline-block bg-[#fabd00]/25 backdrop-blur-sm text-[#fabd00] px-4 py-1.5 rounded-full mb-5 border border-[#fabd00]/30">
                 Excellence in Education
             </span>
 
             <!-- Heading -->
-            <h1 class="font-bold leading-tight mb-4 text-3xl sm:text-4xl md:text-5xl lg:text-6xl drop-shadow-2xl">
+            <h1 class="text-white font-bold leading-[1.1] mb-4 text-4xl md:text-6xl drop-shadow-2xl">
                 Where <span class="text-[#fabd00]">Vision</span>, Innovation & Excellence Unite
             </h1>
 
             <!-- Paragraph -->
-            <p class="text-white/90 text-base sm:text-lg md:text-xl max-w-2xl mb-8 leading-relaxed drop-shadow-md">
+            <p class="text-white/90 text-lg md:text-xl max-w-2xl mb-8 leading-relaxed drop-shadow-md">
                 Aman School is a vibrant ecosystem where academic excellence, cutting-edge technology, and athletic achievement come together to shape future leaders.
             </p>
 
             <!-- Buttons -->
-            <div class="flex flex-col sm:flex-row gap-4">
+            <div class="flex flex-wrap gap-4">
 
                 <a href="#contact"
-                   class="w-full sm:w-auto text-center bg-[#fabd00] text-black px-8 py-3.5 rounded-xl font-semibold shadow-lg hover:scale-105 transition">
+                   class="bg-[#fabd00] text-black px-8 py-3.5 rounded-xl font-semibold shadow-lg hover:scale-105 transition">
                     Begin Application
                 </a>
 
                 <a href="#about"
-                   class="w-full sm:w-auto text-center bg-white/10 backdrop-blur-md border border-white/30 text-white px-8 py-3.5 rounded-xl hover:bg-white/20 transition">
+                   class="bg-white/10 backdrop-blur-md border border-white/30 text-white px-8 py-3.5 rounded-xl hover:bg-white/20 transition">
                     Learn More
                 </a>
 
             </div>
 
-            <!-- Stats -->
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-12 bg-white/80 backdrop-blur-md p-4 md:p-6 rounded-3xl border border-gray-200 shadow-lg max-w-3xl">
+<!-- Stats -->
+	<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12 
+            bg-white/80 backdrop-blur-md p-6 rounded-3xl 
+            border border-gray-200 shadow-lg max-w-3xl">
 
-                <div class="text-center">
-                    <div class="font-bold text-2xl md:text-3xl text-indigo-600 counter" data-target="1200" data-suffix="+">0</div>
-                    <div class="text-gray-600 mt-1 text-sm md:text-base">Students</div>
-                </div>
+    <div class="text-center">
+        <div class="font-bold text-3xl text-indigo-600 counter" data-target="1200" data-suffix="+">0</div>
+        <div class="text-gray-600 mt-1">Students</div>
+    </div>
 
-                <div class="text-center">
-                    <div class="font-bold text-2xl md:text-3xl text-emerald-600 counter" data-target="150" data-suffix="+">0</div>
-                    <div class="text-gray-600 mt-1 text-sm md:text-base">Global Faculty</div>
-                </div>
+    <div class="text-center">
+        <div class="font-bold text-3xl text-emerald-600 counter" data-target="150" data-suffix="+">0</div>
+        <div class="text-gray-600 mt-1">Global Faculty</div>
+    </div>
 
-                <div class="text-center">
-                    <div class="font-bold text-2xl md:text-3xl text-rose-500 counter" data-target="45" data-suffix="+">0</div>
-                    <div class="text-gray-600 mt-1 text-sm md:text-base">Awards</div>
-                </div>
+    <div class="text-center">
+        <div class="font-bold text-3xl text-rose-500 counter" data-target="45" data-suffix="+">0</div>
+        <div class="text-gray-600 mt-1">Awards</div>
+    </div>
 
-                <div class="text-center">
-                    <div class="font-bold text-2xl md:text-3xl text-amber-500 counter" data-target="100" data-suffix="%">0</div>
-                    <div class="text-gray-600 mt-1 text-sm md:text-base">Pass Rate</div>
-                </div>
+    <div class="text-center">
+        <div class="font-bold text-3xl text-amber-500 counter" data-target="100" data-suffix="%">0</div>
+        <div class="text-gray-600 mt-1">Pass Rate</div>
+    </div>
+</div>
 
-            </div>
 
         </div>
     </div>
-
 </section>
+
 
 
 
