@@ -498,91 +498,7 @@
         </div>
     </section>
 
-    <!-- ====== QUICK CONTACT FORM + ADMISSION HELP DESK ====== -->
-    <section class="py-16 max-w-container mx-auto px-responsive">
-        <div class="grid md:grid-cols-5 gap-10">
-            <!-- Form - 3 cols -->
-            <div class="md:col-span-3 reveal">
-                <div class="glass-card p-8 md:p-10 rounded-2xl">
-                    <span class="text-[#00639a] font-label-lg text-label-lg block mb-1">Send a Message</span>
-                    <h3 class="font-headline-md text-[#000666] mb-6">Quick Contact Form</h3>
-                    <form id="contact-form" onsubmit="event.preventDefault(); alert('Thank you for your inquiry! We will get back to you shortly.');">
-                        <div class="grid sm:grid-cols-2 gap-4">
-                            <div>
-                                <label for="student-name" class="form-label">Student Name</label>
-                                <input type="text" id="student-name" class="form-input" placeholder="Enter student name" required />
-                            </div>
-                            <div>
-                                <label for="parent-name" class="form-label">Parent Name</label>
-                                <input type="text" id="parent-name" class="form-input" placeholder="Enter parent name" required />
-                            </div>
-                        </div>
-                        <div class="grid sm:grid-cols-2 gap-4 mt-4">
-                            <div>
-                                <label for="mobile" class="form-label">Mobile Number</label>
-                                <input type="tel" id="mobile" class="form-input" placeholder="Enter mobile number" required />
-                            </div>
-                            <div>
-                                <label for="email" class="form-label">Email Address</label>
-                                <input type="email" id="email" class="form-input" placeholder="Enter email address" />
-                            </div>
-                        </div>
-                        <div class="mt-4">
-                            <label for="class-seeking" class="form-label">Class Seeking Admission</label>
-                            <select id="class-seeking" class="form-input appearance-none bg-white">
-                                <option value="">Select Class</option>
-                                <option value="1">Class 1</option>
-                                <option value="2">Class 2</option>
-                                <option value="3">Class 3</option>
-                                <option value="4">Class 4</option>
-                                <option value="5">Class 5</option>
-                                <option value="6">Class 6</option>
-                                <option value="7">Class 7</option>
-                                <option value="8">Class 8</option>
-                                <option value="9">Class 9</option>
-                                <option value="10">Class 10</option>
-                                <option value="11">Class 11</option>
-                                <option value="12">Class 12</option>
-                            </select>
-                        </div>
-                        <div class="mt-4">
-                            <label for="subject" class="form-label">Subject</label>
-                            <input type="text" id="subject" class="form-input" placeholder="e.g. Admission Inquiry, Fee Details" />
-                        </div>
-                        <div class="mt-4">
-                            <label for="message" class="form-label">Message</label>
-                            <textarea id="message" rows="4" class="form-input resize-none" placeholder="Write your message here..."></textarea>
-                        </div>
-                        <button type="submit" class="mt-6 w-full bg-[#000666] text-white px-8 py-4 rounded-xl font-bold hover:bg-[#1a237e] transition-all shadow-lg shadow-[#000666]/25 hover:scale-[1.02]">
-                            Submit Inquiry
-                        </button>
-                    </form>
-                </div>
-            </div>
-
-            <!-- Admission Help Desk - 2 cols -->
-            <div class="md:col-span-2 reveal" style="transition-delay:100ms">
-                <div class="bg-[#000666] text-white rounded-2xl p-8 md:p-10 h-full">
-                    <span class="text-[#fabd00] font-label-lg text-label-lg block mb-1">Help Desk</span>
-                    <h3 class="font-headline-md text-white mb-4">Admission Enquiry</h3>
-                    <p class="font-body-md text-white/80 mb-6">Need information about:</p>
-                    <ul class="space-y-3 font-body-md text-white/90">
-                        <li class="flex items-center gap-3"><span class="material-symbols-outlined text-[#fabd00] text-xl">check_circle</span> Admission Process</li>
-                        <li class="flex items-center gap-3"><span class="material-symbols-outlined text-[#fabd00] text-xl">check_circle</span> Fee Structure</li>
-                        <li class="flex items-center gap-3"><span class="material-symbols-outlined text-[#fabd00] text-xl">check_circle</span> Scholarship Information</li>
-                        <li class="flex items-center gap-3"><span class="material-symbols-outlined text-[#fabd00] text-xl">check_circle</span> Documents Required</li>
-                        <li class="flex items-center gap-3"><span class="material-symbols-outlined text-[#fabd00] text-xl">check_circle</span> School Facilities</li>
-                    </ul>
-                    <div class="mt-8 pt-6 border-t border-white/10">
-                        <p class="text-sm text-white/60 font-label-lg text-label-lg">Admission Coordinator</p>
-                        <a href="tel:+919929747471" class="font-headline-sm text-[#fabd00] hover:text-white transition-colors inline-flex items-center gap-2">
-                            <span class="material-symbols-outlined text-2xl">call</span> +91 99297 47471
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    
 
     <!-- ====== DEPARTMENT CONTACTS ====== -->
     <section class="py-16 bg-[#000666] text-white">
@@ -778,7 +694,9 @@
             <!-- Brand -->
             <div class="space-y-3">
                 <a href="index.html" class="flex items-center gap-3 no-underline">
-                    <div class="w-8 h-8 rounded-full bg-[#fabd00] flex items-center justify-center text-[#1a1a1a] font-bold text-sm">A</div>
+                    <div class="w-9 h-9 rounded-full overflow-hidden">
+                    <img src="images/logo.png" alt="Aman School Logo" class="w-full h-full object-cover">
+                </div>
                     <span class="font-headline-sm text-white text-xl">Aman School</span>
                 </a>
                 <p class="font-body-md text-white/60 text-sm leading-relaxed">"A place where excellence is nurtured, potential is unlocked, and future leaders are shaped."</p>
@@ -797,18 +715,30 @@
                 <a href="contact.html" class="hover:text-white hover:translate-x-1 transition-all duration-200 text-sm">Contact</a>
             </div>
 
-            <!-- Opening Hours -->
-            <div class="flex flex-col gap-3">
-                <span class="font-label-lg text-label-lg text-white mb-2 block">Opening Hours</span>
-                <div class="text-sm text-white/70 space-y-0.5">
-                    <p>Monday – Saturday &nbsp; 08:00 AM – 04:00 PM</p>
-                    <p class="text-[#fabd00] font-medium">Sunday &nbsp; Closed</p>
-                </div>
-                <div class="flex gap-4 text-xs text-white/40 mt-2">
-                    <a href="#PrivacyPolicy" class="hover:text-white transition-colors duration-200">Privacy Policy</a>
-                    <a href="#Terms" class="hover:text-white transition-colors duration-200">Terms &amp; Conditions</a>
-                </div>
-            </div>
+           <!-- Opening Hours (fixed) -->
+<div class="flex flex-col gap-3">
+    
+    <div>
+        <span class="font-label-lg text-label-lg text-white mb-2 block">
+            Opening Hours
+        </span>
+        <div class="text-sm text-white/70 space-y-0.5">
+            <p>Monday – Friday &nbsp; 08:30 AM – 02:00 PM</p>
+            <p>Saturday &nbsp; 08:30 AM – 02:00 PM</p>
+            <p class="text-[#fabd00] font-medium">Sunday &nbsp; Closed</p>
+        </div>
+    </div>
+    <!-- Privacy + Terms (subtle links) -->
+    <div class="flex gap-4 text-xs text-white/40 mt-2">
+        <a href="#PrivacyPolicy" class="hover:text-white transition-colors duration-200">
+            Privacy Policy
+        </a>
+
+        <a href="#Terms" class="hover:text-white transition-colors duration-200">
+            Terms & Conditions
+        </a>
+    </div>
+</div>
 
             <!-- Newsletter -->
             <div>
