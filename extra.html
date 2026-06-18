@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Universal Sr. Sec. School | Sikar</title>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,700&family=Inter:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+
+    <!-- Swiper -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js">
+    </script>
+
+    <style>
+        /* ====== BASE ====== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8f6f0;
+            color: #1a1a2e;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ====== COLORS ====== */
+        :root {
+            --primary: #0f1a3a;
+            --primary-light: #1a2a5a;
+            --gold: #b8860b;
+            --gold-light: #d4a843;
+            --gold-glow: rgba(184, 134, 11, 0.15);
+            --cream: #f8f6f0;
+            --cream-dark: #ede8dd;
+            --text-dark: #1a1a2e;
+            --text-soft: #4a4a5e;
+            --glass-bg: rgba(255, 255, 255, 0.70);
+            --shadow-soft: 0 8px 40px rgba(15, 26, 58, 0.06);
+        }
+
+        /* ====== GLASS ====== */
+        .glass-premium {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.50);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .glass-card-premium {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.60);
+            box-shadow: var(--shadow-soft);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .glass-card-premium:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(15, 26, 58, 0.08);
+            border-color: rgba(184, 134, 11, 0.20);
+        }
+
+        /* ====== GOLD GRADIENT ====== */
+        .text-gold-gradient {
+            background: linear-gradient(135deg, #b8860b 0%, #d4a843 50%, #b8860b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .bg-gold-gradient {
+            background: linear-gradient(135deg, #b8860b, #d4a843);
+        }
+        .border-gold-subtle {
+            border-color: rgba(184, 134, 11, 0.15);
+        }
+
+        /* ====== REVEAL ====== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .reveal-left.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .reveal-right.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* ====== HEADER ====== */
+        #main-header {
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            background: rgba(255, 255, 255, 0.82);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(184, 134, 11, 0.08);
+        }
+        #main-header.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 30px rgba(15, 26, 58, 0.06);
+        }
+
+        .nav-link {
+            position: relative;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: rgba(26, 26, 46, 0.5);
+            transition: color 0.3s ease;
+            padding-bottom: 4px;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #b8860b, #d4a843);
+            transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .nav-link:hover {
+            color: #0f1a3a;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .nav-link.active {
+            color: #0f1a3a;
+        }
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* ====== LOGO ====== */
+        .logo-text-primary {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #0f1a3a;
+            letter-spacing: -0.02em;
+        }
+        .logo-text-primary .gold {
+            color: #b8860b;
+        }
+        .logo-sub {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.5rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(26, 26, 46, 0.35);
+            margin-top: -2px;
+        }
+
+        /* ====== MOBILE MENU ====== */
+        .mobile-menu-premium {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            transform: translateX(-100%);
+            transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+            z-index: 60;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1.8rem;
+            padding: 2rem;
+        }
+        .mobile-menu-premium.open {
+            transform: translateX(0);
+        }
+
+        .mobile-link {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 600;
+            color: rgba(26, 26, 46, 0.4);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .mobile-link:hover {
+            color: #b8860b;
+            transform: scale(1.05);
+        }
+
+        /* ====== BUTTONS ====== */
+        .btn-gold {
+            background: linear-gradient(135deg, #b8860b, #d4a843);
+            color: #fff;
+            font-weight: 600;
+            padding: 0.7rem 2rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(184, 134, 11, 0.25);
+            display: inline-block;
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-gold:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 36px rgba(184, 134, 11, 0.35);
+        }
+
+        .btn-gold-outline {
+            background: transparent;
+            color: #b8860b;
+            font-weight: 600;
+            padding: 0.65rem 1.8rem;
+            border-radius: 50px;
+            border: 1.5px solid rgba(184, 134, 11, 0.25);
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+            font-size: 0.75rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+        .btn-gold-outline:hover {
+            background: rgba(184, 134, 11, 0.04);
+            border-color: #b8860b;
+            transform: translateY(-2px);
+        }
+
+        /* ====== TICKER ====== */
+        .ticker-premium {
+            background: #0f1a3a;
+            overflow: hidden;
+            border-bottom: 2px solid rgba(184, 134, 11, 0.15);
+        }
+        .ticker-track-premium {
+            display: flex;
+            white-space: nowrap;
+            animation: tickerScroll 40s linear infinite;
+            gap: 4rem;
+            padding: 0 2rem;
+        }
+        .ticker-track-premium span {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.7rem;
+            font-weight: 400;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+        .ticker-track-premium span::before {
+            content: "✦ ";
+            color: #d4a843;
+            font-size: 0.6rem;
+        }
+
+        @keyframes tickerScroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* ====== HERO ====== */
+        .hero-overlay-premium {
+            background: linear-gradient(135deg,
+                    rgba(15, 26, 58, 0.60) 0%,
+                    rgba(15, 26, 58, 0.20) 60%,
+                    rgba(15, 26, 58, 0.05) 100%);
+        }
+
+        /* ====== STATS ====== */
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: #0f1a3a;
+        }
+        .stat-number .gold {
+            color: #b8860b;
+        }
+        @media (min-width: 768px) {
+            .stat-number {
+                font-size: 3.4rem;
+            }
+        }
+
+        /* ====== FACILITY ====== */
+        .facility-icon-wrap {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: rgba(184, 134, 11, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(184, 134, 11, 0.08);
+            transition: all 0.4s ease;
+        }
+        .facility-card-premium:hover .facility-icon-wrap {
+            background: rgba(184, 134, 11, 0.12);
+            border-color: rgba(184, 134, 11, 0.20);
+            transform: scale(1.08);
+        }
+        .facility-icon-wrap .material-symbols-outlined {
+            color: #b8860b;
+            font-size: 26px;
+        }
+
+        /* ====== SWIPER ====== */
+        .campus-slider-wrapper .swiper-button-prev,
+        .campus-slider-wrapper .swiper-button-next {
+            color: #b8860b;
+            background: rgba(255, 255, 255, 0.8);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(184, 134, 11, 0.10);
+            box-shadow: var(--shadow-soft);
+            transition: all 0.3s ease;
+        }
+        .campus-slider-wrapper .swiper-button-prev:hover,
+        .campus-slider-wrapper .swiper-button-next:hover {
+            background: #fff;
+            border-color: rgba(184, 134, 11, 0.30);
+        }
+        .campus-slider-wrapper .swiper-button-prev:after,
+        .campus-slider-wrapper .swiper-button-next:after {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        /* ====== HERO SLIDER ====== */
+        .hero-slider {
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .hero-slider .swiper-slide {
+            width: 100%;
+            height: 100%;
+        }
+        .hero-slider .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            object-position: center;
+        }
+        .hero-slider .swiper-button-next,
+        .hero-slider .swiper-button-prev {
+            color: #b8860b;
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.80);
+            border-radius: 50%;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(184, 134, 11, 0.10);
+            box-shadow: var(--shadow-soft);
+        }
+        .hero-slider .swiper-button-next:after,
+        .hero-slider .swiper-button-prev:after {
+            font-size: 16px;
+            font-weight: 700;
+        }
+        .hero-slider .swiper-pagination-bullet {
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.4);
+            opacity: 1;
+        }
+        .hero-slider .swiper-pagination-bullet-active {
+            background: #b8860b;
+            opacity: 1;
+        }
+        @media (max-width: 991px) {
+            .hero-slider {
+                height: 70vh;
+            }
+        }
+        @media (max-width: 768px) {
+            .hero-slider .swiper-slide img {
+                object-fit: contain;
+                background: #f8f6f0;
+            }
+        }
+
+        /* ====== MASONRY ====== */
+        .masonry-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            grid-auto-rows: 220px;
+            gap: 16px;
+        }
+        .masonry-item:nth-child(3n) {
+            grid-row: span 2;
+        }
+        .masonry-item:nth-child(4n) {
+            grid-column: span 2;
+        }
+        @media (max-width: 768px) {
+            .masonry-item {
+                grid-row: span 1 !important;
+                grid-column: span 1 !important;
+            }
+            .masonry-grid {
+                grid-auto-rows: 180px;
+            }
+        }
+
+        /* ====== SCROLLBAR ====== */
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f8f6f0;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #b8860b;
+            border-radius: 10px;
+        }
+
+        /* ====== UTILITY ====== */
+        .max-w-container {
+            max-width: 1280px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .px-responsive {
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        }
+        @media (min-width: 768px) {
+            .px-responsive {
+                padding-left: 3rem;
+                padding-right: 3rem;
+            }
+        }
+
+        .font-display-lg {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            line-height: 1.1;
+        }
+        .font-display-md {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+        .font-display-sm {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+        .font-body-premium {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.7;
+        }
+        .font-label-premium {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 640px) {
+            .font-display-lg {
+                font-size: 2rem;
+            }
+            .font-display-md {
+                font-size: 1.5rem;
+            }
+            .font-body-premium {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* ====== FLOATING ====== */
+        .float-btn-premium {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #b8860b, #d4a843);
+            color: #fff;
+            box-shadow: 0 6px 24px rgba(184, 134, 11, 0.30);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        .float-btn-premium:hover {
+            transform: scale(1.10);
+            box-shadow: 0 10px 40px rgba(184, 134, 11, 0.40);
+        }
+        .float-btn-premium.secondary {
+            background: #fff;
+            color: #0f1a3a;
+            box-shadow: 0 6px 24px rgba(15, 26, 58, 0.08);
+            border: 1px solid rgba(184, 134, 11, 0.10);
+        }
+        .float-btn-premium.secondary:hover {
+            box-shadow: 0 10px 40px rgba(15, 26, 58, 0.12);
+        }
+
+        *:focus-visible {
+            outline: 2px solid #b8860b;
+            outline-offset: 2px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ====== HEADER ====== -->
+    <header id="main-header" class="fixed top-0 w-full z-50 h-[72px] flex items-center">
+        <div class="max-w-container mx-auto px-responsive flex justify-between items-center w-full">
+
+            <a href="index.html" class="flex items-center gap-3 no-underline group" aria-label="Universal School Home">
+                <div class="w-12 h-12 md:w-14 md:h-14 rounded-full overflow-hidden border-2 border-[#b8860b]/20 shadow-md flex-shrink-0 bg-white">
+                    <img src="images/logo.png" alt="Universal School Logo" class="w-full h-full object-cover" />
+                </div>
+                <div class="flex flex-col leading-tight">
+                    <span class="logo-text-primary">
+                        Universal <span class="gold">School</span>
+                    </span>
+                    <span class="logo-sub">Sikar · Sr. Sec.</span>
+                </div>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-8">
+                <a href="index.html" class="nav-link active">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="admission.html" class="nav-link">Admission</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </nav>
+
+            <div class="flex items-center gap-4">
+                <a href="admission.html" class="btn-gold hidden sm:inline-block text-xs px-6 py-2.5">
+                    Enrol Now
+                </a>
+                <button id="hamburger-btn" class="md:hidden text-[#0f1a3a] p-2 rounded-full hover:bg-[#0f1a3a]/5 transition-colors" aria-label="Menu" aria-expanded="false">
+                    <span class="material-symbols-outlined text-3xl">menu</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ====== MOBILE MENU ====== -->
+    <div id="mobile-menu" class="mobile-menu-premium" aria-hidden="true">
+        <button id="close-menu" class="absolute top-6 right-6 text-[#0f1a3a]/40 hover:text-[#0f1a3a] text-3xl p-2" aria-label="Close menu">
+            <span class="material-symbols-outlined">close</span>
+        </button>
+        <a href="index.html" class="mobile-link text-[#0f1a3a]">Home</a>
+        <a href="about.html" class="mobile-link">About</a>
+        <a href="admission.html" class="mobile-link">Admission</a>
+        <a href="contact.html" class="mobile-link">Contact</a>
+        <a href="admission.html" class="btn-gold mt-2 text-sm px-8 py-3">
+            Apply Now
+        </a>
+        <div class="absolute bottom-12 text-[#0f1a3a]/20 text-xs font-label-premium tracking-widest">
+            ✦ Universal Sr. Sec. School ✦
+        </div>
+    </div>
+
+    <!-- ====== NEWS TICKER ====== -->
+    <div id="news-ticker" class="ticker-premium fixed w-full z-40" style="top:72px; height:34px; display:flex; align-items:center;">
+        <div class="ticker-track-premium">
+            <span>Admissions Open for 2025-26 Session</span>
+            <span>Merit Scholarships Available</span>
+            <span>Summer Break: May 15 – June 30</span>
+            <span>100% Pass Rate for 10th Consecutive Year</span>
+            <span>Admissions Open for 2025-26 Session</span>
+            <span>Merit Scholarships Available</span>
+            <span>Summer Break: May 15 – June 30</span>
+            <span>100% Pass Rate for 10th Consecutive Year</span>
+        </div>
+    </div>
+
+    <!-- ====== HERO SLIDER ====== -->
+    <section class="hero-slider swiper relative" style="margin-top:106px;">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide relative">
+                <img src="images/heroslide1.jpg" alt="Hero 1" />
+                <div class="hero-overlay-premium absolute inset-0 flex items-center">
+                    <div class="max-w-container mx-auto px-responsive w-full">
+                        <div class="max-w-2xl">
+                            <span class="text-[#b8860b] font-label-premium tracking-[0.2em] block mb-3 bg-white/60 backdrop-blur-sm inline-block px-4 py-1 rounded-full">EST. 1998</span>
+                            <h1 class="font-display-lg text-white leading-tight drop-shadow-lg">
+                                Where <span class="text-gold-gradient">Excellence</span><br />Meets Character
+                            </h1>
+                            <p class="font-body-premium text-white/90 mt-4 max-w-lg drop-shadow-md">A premier institution shaping future leaders through holistic education, innovation, and values.</p>
+                            <div class="flex flex-wrap gap-4 mt-6">
+                                <a href="admission.html" class="btn-gold">Explore Admissions</a>
+                                <a href="about.html" class="btn-gold-outline border-white/40 text-white hover:bg-white/10 hover:border-white">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide relative">
+                <img src="images/heroslide2.jpg" alt="Hero 2" />
+                <div class="hero-overlay-premium absolute inset-0 flex items-center">
+                    <div class="max-w-container mx-auto px-responsive w-full">
+                        <div class="max-w-2xl ml-auto text-right">
+                            <span class="text-[#b8860b] font-label-premium tracking-[0.2em] block mb-3 bg-white/60 backdrop-blur-sm inline-block px-4 py-1 rounded-full">ACADEMIC EXCELLENCE</span>
+                            <h1 class="font-display-lg text-white leading-tight drop-shadow-lg">
+                                Ranked Among <span class="text-gold-gradient">Top 10</span><br />Schools in Sikar
+                            </h1>
+                            <p class="font-body-premium text-white/90 mt-4 max-w-lg ml-auto drop-shadow-md">Our students consistently achieve outstanding results in board examinations and competitive tests.</p>
+                            <div class="flex flex-wrap gap-4 mt-6 justify-end">
+                                <a href="admission.html" class="btn-gold">Admission Enquiry</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide relative">
+                <img src="images/heroslide3.jpg" alt="Hero 3" />
+                <div class="hero-overlay-premium absolute inset-0 flex items-center">
+                    <div class="max-w-container mx-auto px-responsive w-full">
+                        <div class="max-w-2xl">
+                            <span class="text-[#b8860b] font-label-premium tracking-[0.2em] block mb-3 bg-white/60 backdrop-blur-sm inline-block px-4 py-1 rounded-full">HOLISTIC EDUCATION</span>
+                            <h1 class="font-display-lg text-white leading-tight drop-shadow-lg">
+                                Beyond <span class="text-gold-gradient">Textbooks</span><br />Building Futures
+                            </h1>
+                            <p class="font-body-premium text-white/90 mt-4 max-w-lg drop-shadow-md">From sports to performing arts, STEM to leadership — we nurture every facet of a child's potential.</p>
+                            <div class="flex flex-wrap gap-4 mt-6">
+                                <a href="admission.html" class="btn-gold">Join Us</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide relative">
+                <img src="images/heroslide4.jpg" alt="Hero 4" />
+                <div class="hero-overlay-premium absolute inset-0 flex items-center">
+                    <div class="max-w-container mx-auto px-responsive w-full">
+                        <div class="max-w-2xl ml-auto text-right">
+                            <span class="text-[#b8860b] font-label-premium tracking-[0.2em] block mb-3 bg-white/60 backdrop-blur-sm inline-block px-4 py-1 rounded-full">INFRASTRUCTURE</span>
+                            <h1 class="font-display-lg text-white leading-tight drop-shadow-lg">
+                                World-Class <span class="text-gold-gradient">Campus</span><br />Modern Facilities
+                            </h1>
+                            <p class="font-body-premium text-white/90 mt-4 max-w-lg ml-auto drop-shadow-md">State-of-the-art labs, libraries, sports complexes, and creative spaces designed for excellence.</p>
+                            <div class="flex flex-wrap gap-4 mt-6 justify-end">
+                                <a href="contact.html" class="btn-gold-outline border-white/40 text-white hover:bg-white/10 hover:border-white">Visit Campus</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide relative">
+                <img src="images/heroslide5.jpg" alt="Hero 5" />
+                <div class="hero-overlay-premium absolute inset-0 flex items-center">
+                    <div class="max-w-container mx-auto px-responsive w-full">
+                        <div class="max-w-2xl">
+                            <span class="text-[#b8860b] font-label-premium tracking-[0.2em] block mb-3 bg-white/60 backdrop-blur-sm inline-block px-4 py-1 rounded-full">COMMUNITY</span>
+                            <h1 class="font-display-lg text-white leading-tight drop-shadow-lg">
+                                A <span class="text-gold-gradient">Family</span> of<br />5000+ Alumni
+                            </h1>
+                            <p class="font-body-premium text-white/90 mt-4 max-w-lg drop-shadow-md">Our alumni network spans the globe, with leaders in medicine, engineering, arts, and entrepreneurship.</p>
+                            <div class="flex flex-wrap gap-4 mt-6">
+                                <a href="about.html" class="btn-gold-outline border-white/40 text-white hover:bg-white/10 hover:border-white">Our Story</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+    </section>
+
+    <!-- ====== STATS ====== -->
+    <section class="py-10 bg-white border-y border-[#b8860b]/5">
+        <div class="max-w-container mx-auto px-responsive">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div class="reveal">
+                    <div class="stat-number counter" data-target="1800" data-suffix="+">0</div>
+                    <p class="text-[#4a4a5e] text-xs font-label-premium tracking-widest mt-1">Students</p>
+                </div>
+                <div class="reveal" style="transition-delay:100ms">
+                    <div class="stat-number counter" data-target="120" data-suffix="+">0</div>
+                    <p class="text-[#4a4a5e] text-xs font-label-premium tracking-widest mt-1">Faculty</p>
+                </div>
+                <div class="reveal" style="transition-delay:200ms">
+                    <div class="stat-number counter" data-target="45" data-suffix="+">0</div>
+                    <p class="text-[#4a4a5e] text-xs font-label-premium tracking-widest mt-1">Awards</p>
+                </div>
+                <div class="reveal" style="transition-delay:300ms">
+                    <div class="stat-number counter" data-target="100" data-suffix="%">0</div>
+                    <p class="text-[#4a4a5e] text-xs font-label-premium tracking-widest mt-1">Pass Rate</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== DIRECTOR'S MESSAGE ====== -->
+    <section class="py-20 max-w-container mx-auto px-responsive">
+        <div class="grid md:grid-cols-2 gap-16 items-center">
+            <div class="relative reveal-left order-2 md:order-1">
+                <div class="absolute -inset-4 bg-[#b8860b]/5 rounded-3xl -z-10 rotate-2"></div>
+                <div class="absolute -inset-8 bg-[#b8860b]/3 rounded-3xl -z-20 -rotate-3"></div>
+                <div class="rounded-2xl overflow-hidden shadow-2xl border border-[#b8860b]/10">
+                    <img alt="Director Mohd. Aslam" class="w-full h-[460px] md:h-[540px] object-cover" loading="lazy" src="images/principal.jpg" />
+                </div>
+                <div class="absolute bottom-4 left-4 bg-white/90 backdrop-blur-md px-5 py-3 rounded-xl shadow-lg border border-[#b8860b]/10">
+                    <p class="text-[#0f1a3a] font-display-sm text-sm">Mohd. Aslam</p>
+                    <p class="text-[#4a4a5e] text-xs font-label-premium">Director & Chief Academic Officer</p>
+                </div>
+            </div>
+            <div class="reveal-right order-1 md:order-2">
+                <span class="text-[#b8860b] font-label-premium tracking-[0.2em] block mb-3">Director's Message</span>
+                <h2 class="font-display-lg text-[#0f1a3a] leading-tight mb-4">
+                    "Empowering Minds,<br />Inspiring <span class="text-gold-gradient">Excellence</span>"
+                </h2>
+                <p class="font-body-premium text-[#4a4a5e] leading-relaxed mb-6">
+                    At Universal Sr. Sec. School, we believe that education is the cornerstone of a progressive society. Our mission is to cultivate young minds with the knowledge, skills, and values they need to navigate a complex world with confidence and compassion.
+                </p>
+                <p class="font-body-premium text-[#4a4a5e] leading-relaxed mb-6">
+                    We are committed to providing a nurturing environment where every child is encouraged to explore their potential, think critically, and develop a lifelong love for learning.
+                </p>
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-[2px] bg-[#b8860b]"></div>
+                    <div>
+                        <p class="font-display-sm text-[#0f1a3a] text-sm">Mohd. Aslam</p>
+                        <p class="text-[#4a4a5e] text-xs font-label-premium">Director</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== RESULT SHOWCASE ====== -->
+    <section class="py-20 bg-[#f8f6f0] border-y border-[#b8860b]/5">
+        <div class="max-w-container mx-auto px-responsive">
+            <div class="text-center mb-14 reveal">
+                <span class="text-[#b8860b] font-label-premium tracking-[0.2em] block mb-2">Our Results</span>
+                <h2 class="font-display-lg text-[#0f1a3a]">Celebrating <span class="text-gold-gradient">Academic Excellence</span></h2>
+                <p class="font-body-premium text-[#4a4a5e] max-w-2xl mx-auto mt-2">Our students consistently achieve outstanding results in board examinations.</p>
+            </div>
+
+            <div class="campus-slider-wrapper relative">
+                <div class="swiper campus-slider">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"><img src="images/Resultb_1.jpg" alt="Result 1" loading="lazy" class="rounded-2xl border border-[#b8860b]/5 shadow-md" /></div>
+                        <div class="swiper-slide"><img src="images/Resultb_2.jpg" alt="Result 2" loading="lazy" class="rounded-2xl border border-[#b8860b]/5 shadow-md" /></div>
+                        <div class="swiper-slide"><img src="images/Resultb_3.jpg" alt="Result 3" loading="lazy" class="rounded-2xl border border-[#b8860b]/5 shadow-md" /></div>
+                        <div class="swiper-slide"><img src="images/Resultb_4.jpg" alt="Result 4" loading="lazy" class="rounded-2xl border border-[#b8860b]/5 shadow-md" /></div>
+                        <div class="swiper-slide"><img src="images/Resultb_5.jpg" alt="Result 5" loading="lazy" class="rounded-2xl border border-[#b8860b]/5 shadow-md" /></div>
+                    </div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== ACADEMICS ====== -->
+    <section class="py-20 max-w-container mx-auto px-responsive">
+        <div class="text-center mb-14 reveal">
+            <span class="text-[#b8860b] font-label-premium tracking-[0.2em] block mb-2">Our Pillars</span>
+            <h2 class="font-display-lg text-[#0f1a3a]">Excellence in <span class="text-gold-gradient">Every Dimension</span></h2>
+            <p class="font-body-premium text-[#4a4a5e] max-w-2xl mx-auto mt-2">A holistic approach combining academic rigor, physical prowess, and artistic expression.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="glass-card-premium p-7 rounded-2xl reveal hover:border-[#b8860b]/20 transition-all group">
+                <div class="w-14 h-14 rounded-full bg-[#b8860b]/5 border border-[#b8860b]/10 flex items-center justify-center mb-4 group-hover:bg-[#b8860b]/10 transition-all">
+                    <span class="material-symbols-outlined text-[#b8860b] text-3xl">school</span>
+                </div>
+                <h3 class="font-display-sm text-[#0f1a3a] text-lg mb-2">IB Diploma Program</h3>
+                <p class="text-[#4a4a5e] text-sm leading-relaxed mb-4">Rigorous international curriculum preparing students for the world's most prestigious universities.</p>
+                <ul class="space-y-2">
+                    <li class="flex items-center gap-2 text-[#4a4a5e] text-sm"><span class="material-symbols-outlined text-[#b8860b] text-base" style="font-variation-settings:'FILL'1;">star</span> Global Recognition</li>
+                    <li class="flex items-center gap-2 text-[#4a4a5e] text-sm"><span class="material-symbols-outlined text-[#b8860b] text-base" style="font-variation-settings:'FILL'1;">star</span> Holistic Assessment</li>
+                </ul>
+            </div>
+
+            <div class="glass-card-premium p-7 rounded-2xl reveal transition-all group" style="transition-delay:100ms">
+                <div class="w-14 h-14 rounded-full bg-[#b8860b]/5 border border-[#b8860b]/10 flex items-center justify-center mb-4 group-hover:bg-[#b8860b]/10 transition-all">
+                    <span class="material-symbols-outlined text-[#b8860b] text-3xl">science</span>
+                </div>
+                <h3 class="font-display-sm text-[#0f1a3a] text-lg mb-2">STEM Innovation</h3>
+                <p class="text-[#4a4a5e] text-sm leading-relaxed mb-4">State-of-the-art labs and robotics centers solving real-world problems through technology.</p>
+                <ul class="space-y-2">
+                    <li class="flex items-center gap-2 text-[#4a4a5e] text-sm"><span class="material-symbols-outlined text-[#b8860b] text-base" style="font-variation-settings:'FILL'1;">star</span> Robotics &amp; AI Labs</li>
+                    <li class="flex items-center gap-2 text-[#4a4a5e] text-sm"><span class="material-symbols-outlined text-[#b8860b] text-base" style="font-variation-settings:'FILL'1;">star</span> 3D Prototyping</li>
+                </ul>
+            </div>
+
+            <div class="glass-card-premium p-7 rounded-2xl reveal transition-all group" style="transition-delay:200ms">
+                <div class="w-14 h-14 rounded-full bg-[#b8860b]/5 border border-[#b8860b]/10 flex items-center justify-center mb-4 group-hover:bg-[#b8860b]/10 transition-all">
+                    <span class="material-symbols-outlined text-[#b8860b] text-3xl">palette</span>
+                </div>
+                <h3 class="font-display-sm text-[#0f1a3a] text-lg mb-2">Performing Arts</h3>
+                <p class="text-[#4a4a5e] text-sm leading-relaxed mb-4">From classical music to contemporary drama in our world-class performing arts center.</p>
+                <ul class="space-y-2">
+                    <li class="flex items-center gap-2 text-[#4a4a5e] text-sm"><span class="material-symbols-outlined text-[#b8860b] text-base" style="font-variation-settings:'FILL'1;">star</span> Full Orchestral Support</li>
+                    <li class="flex items-center gap-2 text-[#4a4a5e] text-sm"><span class="material-symbols-outlined text-[#b8860b] text-base" style="font-variation-settings:'FILL'1;">star</span> Design &amp; Visual Arts</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== TOPPER SLIDER ====== -->
+    <section class="py-20 bg-[#f8f6f0] border-y border-[#b8860b]/5 overflow-hidden">
+        <div class="max-w-container mx-auto px-responsive mb-12 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4">
+            <div class="reveal">
+                <span class="text-[#b8860b] font-label-premium tracking-[0.2em] block mb-2">Scholarly Achievements</span>
+                <h2 class="font-display-lg text-[#0f1a3a]">Top Performers <span class="text-gold-gradient">2025</span></h2>
+                <p class="font-body-premium text-[#4a4a5e]">Exceptional success stories from our students.</p>
+            </div>
+            <div class="flex gap-3">
+                <button class="custom-swiper-button-prev w-11 h-11 rounded-full border border-[#b8860b]/20 text-[#b8860b] flex items-center justify-center hover:bg-[#b8860b]/5 transition-all" aria-label="Previous">
+                    <span class="material-symbols-outlined text-xl">arrow_back</span>
+                </button>
+                <button class="custom-swiper-button-next w-11 h-11 rounded-full border border-[#b8860b]/20 text-[#b8860b] flex items-center justify-center hover:bg-[#b8860b]/5 transition-all" aria-label="Next">
+                    <span class="material-symbols-outlined text-xl">arrow_forward</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="swiper topper-swiper overflow-visible px-responsive">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="glass-card-premium rounded-2xl overflow-hidden group h-full flex flex-col border border-[#b8860b]/5">
+                        <div class="h-64 relative overflow-hidden bg-[#f8f6f0]">
+                            <img alt="Student Akash" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" loading="lazy" src="images/St1.jpg" />
+                            <div class="absolute top-3 right-3 bg-gold-gradient text-white px-3 py-1 rounded-full font-bold text-sm shadow-md">99.4%</div>
+                        </div>
+                        <div class="p-5 flex-1">
+                            <h4 class="font-display-sm text-[#0f1a3a] text-lg">Akash Choudhary</h4>
+                            <p class="text-[#b8860b] font-label-premium">98.90%</p>
+                            <p class="text-[#4a4a5e] text-sm mt-1">Jaitarano Ki Dhani, Sikar</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="glass-card-premium rounded-2xl overflow-hidden group h-full flex flex-col border border-[#b8860b]/5">
+                        <div class="h-64 relative overflow-hidden bg-[#f8f6f0]">
+                            <img alt="Student Abhishek" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" loading="lazy" src="images/St2.jpg" />
+                            <div class="absolute top-3 right-3 bg-gold-gradient text-white px-3 py-1 rounded-full font-bold text-sm shadow-md">98.8%</div>
+                        </div>
+                        <div class="p-5 flex-1">
+                            <h4 class="font-display-sm text-[#0f1a3a] text-lg">Abhishek Kalwaniya</h4>
+                            <p class="text-[#b8860b] font-label-premium">98.60%</p>
+                            <p class="text-[#4a4a5e] text-sm mt-1">Malviya Nagar, Sikar</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="glass-card-premium rounded-2xl overflow-hidden group h-full flex flex-col border border-[#b8860b]/5">
+                        <div class="h-64 relative overflow-hidden bg-[#f8f6f0]">
+                            <img alt="Student Ayesha" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" loading="lazy" src="images/St3.jpg" />
+                            <div class="absolute top-3 right-3 bg-gold-gradient text-white px-3 py-1 rounded-full font-bold text-sm shadow-md">98.5%</div>
+                        </div>
+                        <div class="p-5 flex-1">
+                            <h4 class="font-display-sm text-[#0f1a3a] text-lg">Ayesha Khan</h4>
+                            <p class="text-[#b8860b] font-label-premium">98.20%</p>
+                            <p class="text-[#4a4a5e] text-sm mt-1">Mansarovar Ext., Sikar</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="glass-card-premium rounded-2xl overflow-hidden group h-full flex flex-col border border-[#b8860b]/5">
+                        <div class="h-64 relative overflow-hidden bg-[#f8f6f0]">
+                            <img alt="Student Preeti" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" loading="lazy" src="images/St4.jpg" />
+                            <div class="absolute top-3 right-3 bg-gold-gradient text-white px-3 py-1 rounded-full font-bold text-sm shadow-md">98.2%</div>
+                        </div>
+                        <div class="p-5 flex-1">
+                            <h4 class="font-display-sm text-[#0f1a3a] text-lg">Preeti Agarwal</h4>
+                            <p class="text-[#b8860b] font-label-premium">97.80%</p>
+                            <p class="text-[#4a4a5e] text-sm mt-1">Panchyawala, Sikar</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="glass-card-premium rounded-2xl overflow-hidden group h-full flex flex-col border border-[#b8860b]/5">
+                        <div class="h-64 relative overflow-hidden bg-[#f8f6f0]">
+                            <img alt="Student Shubham" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" loading="lazy" src="images/St6.jpg" />
+                            <div class="absolute top-3 right-3 bg-gold-gradient text-white px-3 py-1 rounded-full font-bold text-sm shadow-md">97.6%</div>
+                        </div>
+                        <div class="p-5 flex-1">
+                            <h4 class="font-display-sm text-[#0f1a3a] text-lg">Shubham Kabra</h4>
+                            <p class="text-[#b8860b] font-label-premium">97.60%</p>
+                            <p class="text-[#4a4a5e] text-sm mt-1">Shariyan Ki Gali, Sikar</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== FACILITIES ====== -->
+    <section class="py-20 max-w-container mx-auto px-responsive">
+        <div class="text-center mb-14 reveal">
+            <span class="text-[#b8860b] font-label-premium tracking-[0.2em] block mb-2">Campus &amp; Beyond</span>
+            <h2 class="font-display-lg text-[#0f1a3a]">World-Class <span class="text-gold-gradient">Facilities</span></h2>
+            <p class="font-body-premium text-[#4a4a5e] max-w-2xl mx-auto mt-2">A campus designed to inspire, nurture, and empower every student.</p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="glass-card-premium p-5 rounded-2xl reveal facility-card-premium border border-[#b8860b]/5 hover:border-[#b8860b]/15 transition-all">
+                <div class="facility-icon-wrap mb-3"><span class="material-symbols-outlined">menu_book</span></div>
+                <h5 class="font-display-sm text-[#0f1a3a] text-base mb-1">Library</h5>
+                <p class="text-[#4a4a5e] text-xs leading-relaxed">Extensive collection of books, journals, and digital resources.</p>
+            </div>
+            <div class="glass-card-premium p-5 rounded-2xl reveal facility-card-premium border border-[#b8860b]/5 hover:border-[#b8860b]/15 transition-all" style="transition-delay:30ms">
+                <div class="facility-icon-wrap mb-3"><span class="material-symbols-outlined">sports_tennis</span></div>
+                <h5 class="font-display-sm text-[#0f1a3a] text-base mb-1">Sports Arena</h5>
+                <p class="text-[#4a4a5e] text-xs leading-relaxed">Cricket, kabaddi, badminton, and outdoor activity zones.</p>
+            </div>
+            <div class="glass-card-premium p-5 rounded-2xl reveal facility-card-premium border border-[#b8860b]/5 hover:border-[#b8860b]/15 transition-all" style="transition-delay:60ms">
+                <div class="facility-icon-wrap mb-3"><span class="material-symbols-outlined">theater_comedy</span></div>
+                <h5 class="font-display-sm text-[#0f1a3a] text-base mb-1">Auditorium</h5>
+                <p class="text-[#4a4a5e] text-xs leading-relaxed">Multipurpose hall for assemblies, events, and performances.</p>
+            </div>
+            <div class="glass-card-premium p-5 rounded-2xl reveal facility-card-premium border border-[#b8860b]/5 hover:border-[#b8860b]/15 transition-all" style="transition-delay:90ms">
+                <div class="facility-icon-wrap mb-3"><span class="material-symbols-outlined">medical_services</span></div>
+                <h5 class="font-display-sm text-[#0f1a3a] text-base mb-1">Health Suite</h5>
+                <p class="text-[#4a4a5e] text-xs leading-relaxed">First-aid and basic healthcare facilities on campus.</p>
+            </div>
+            <div class="glass-card-premium p-5 rounded-2xl reveal facility-card-premium border border-[#b8860b]/5 hover:border-[#b8860b]/15 transition-all">
+                <div class="facility-icon-wrap mb-3"><span class="material-symbols-outlined">bus_alert</span></div>
+                <h5 class="font-display-sm text-[#0f1a3a] text-base mb-1">Smart Transport</h5>
+                <p class="text-[#4a4a5e] text-xs leading-relaxed">Safe, reliable bus service with fixed routes and supervision.</p>
+            </div>
+            <div class="glass-card-premium p-5 rounded-2xl reveal facility-card-premium border border-[#b8860b]/5 hover:border-[#b8860b]/15 transition-all">
+                <div class="facility-icon-wrap mb-3"><span class="material-symbols-outlined">self_improvement</span></div>
+                <h5 class="font-display-sm text-[#0f1a3a] text-base mb-1">Wellness Center</h5>
+                <p class="text-[#4a4a5e] text-xs leading-relaxed">Yoga and mindfulness sessions for focus and well-being.</p>
+            </div>
+            <div class="glass-card-premium p-5 rounded-2xl reveal facility-card-premium border border-[#b8860b]/5 hover:border-[#b8860b]/15 transition-all">
+                <div class="facility-icon-wrap mb-3"><span class="material-symbols-outlined">restaurant</span></div>
+                <h5 class="font-display-sm text-[#0f1a3a] text-base mb-1">Nutrition Hub</h5>
+                <p class="text-[#4a4a5e] text-xs leading-relaxed">Healthy, hygienic meals with balanced nutrition guidance.</p>
+            </div>
+            <div class="glass-card-premium p-5 rounded-2xl reveal facility-card-premium border border-[#b8860b]/5 hover:border-[#b8860b]/15 transition-all">
+                <div class="facility-icon-wrap mb-3"><span class="material-symbols-outlined">garden_cart</span></div>
+                <h5 class="font-display-sm text-[#0f1a3a] text-base mb-1">Green Campus</h5>
+                <p class="text-[#4a4a5e] text-xs leading-relaxed">Lush gardens and a peaceful environment for learning.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== GALLERY MASONRY ====== -->
+    <section class="py-20 bg-[#f8f6f0] border-y border-[#b8860b]/5">
+        <div class="max-w-container mx-auto px-responsive">
+            <div class="text-center mb-14 reveal">
+                <span class="text-[#b8860b] font-label-premium tracking-[0.2em] block mb-2">Campus Life</span>
+                <h2 class="font-display-lg text-[#0f1a3a]">A Visual <span class="text-gold-gradient">Journey</span></h2>
+                <p class="font-body-premium text-[#4a4a5e] max-w-2xl mx-auto mt-2">Daily moments that define the Universal School experience.</p>
+            </div>
+
+            <div class="masonry-grid reveal">
+                <div class="masonry-item rounded-2xl overflow-hidden relative group cursor-zoom-in border border-[#b8860b]/5 shadow-md">
+                    <img alt="Campus life" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJgX2dUM2b815wKL9dpE36wbqRWXhZp173UtgWRkPy3O_vt6Ny8eY_erMed9Kvg3Fdvjs5J4DQFF3M_b3n6_FcAxxsuMAIMGcFuCinF2VsjGJ4jkIzNsKTamcVXAA_gCGfAm54ZpsS-FK6BvvsY_7Mt_4n1rf7mBCT-C9V25hUNhTS_m_CAN2Hv8oRncntZeLdA8tTr9c5vct6hBEMolLSOHZgA8CAJG8d2n9GAfnRCpaUpw-F4dhe_I6xtS4MkhZN27T3OR0mfQQ" />
+                </div>
+                <div class="masonry-item rounded-2xl overflow-hidden relative group cursor-zoom-in border border-[#b8860b]/5 shadow-md">
+                    <img alt="Robotics lab" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRK2mYvloM40PExbmgui3m3y727e6W0g17B-7C3pnE-82m0aFQIT88-q2gxIVzBFMq0r8eNbf6hYCKg0N5jE3NSquqmfw3Zq64_hWCAKrV4GnSO5iE5Aq-U0GusEIHIhLlwwn8Lfm3ZRAR7QxipY_eJQZTKLwbb_iRTovuDw4efQFFAD7-waWvIp2UPME8uQizTU_OG9URBdpK0-jRdT5X3KtzG89KehHW3o9DZnWXzrR0-lplr9XxIqiIB3styyRZSCDEsauSVIo" />
+                </div>
+                <div class="masonry-item rounded-2xl overflow-hidden relative group cursor-zoom-in border border-[#b8860b]/5 shadow-md">
+                    <img alt="Library" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXAF4u9iIRM5_OnZzRVhtdSWv78Cai0O58R5WIyQsaLjRojzFYL_yf71ufdYGGLrD2ROYnFlT7Dir9XT0XFG2nCinht6vV7jtVJPS1zVjdOKiO3nHEDfD85b1116kQeJx7FZ0fjC1b2QTKC9FDnYShp5nGNSFfTGjYdaqXBd4T6SS4yzCzGg3QZ76v1y56lokrikPlr-pj5rNAv1YEtW0DYnWM0K21SFjTCH4cCXC2n7TnMA72soXWU2CPKO7XHa11SyES1SSVYqo" />
+                </div>
+                <div class="masonry-item rounded-2xl overflow-hidden relative group cursor-zoom-in border border-[#b8860b]/5 shadow-md">
+                    <img alt="Sports" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqNdGDSWbMWhTYSKw5RJqAfF4DszTjT5QtUz1MosY6jGXXnfdyWSqUbaEu7Hpnt4uMxKtLoohbXa3v4oLV_UjnNinyHycRlffCfOvoeL3EwmB-BSEVXA8lN-gfFEogMu_oOnY8kPjdDeA3OrpnfgGU70QHIUKCgH9ehghikvUqvWeCsoXhMJlpgUtiGJgtFJiG_nWJFR1H8bmkhoTjkTxz2U8uprlhcmtMODzxoS772kKKMHF8Nw5Vo-iptzHA33Ks9SBRFw_a7Qc" />
+                </div>
+                <div class="masonry-item rounded-2xl overflow-hidden relative group cursor-zoom-in border border-[#b8860b]/5 shadow-md">
+                    <img alt="Music" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGYnQ7GHu73xMai31W-VuJTDd6jspHd9QP8Q3ejhmS1lr4ReSgKCIELbCOL62pHPXNCl-1cEBEaCxCeoKRY5MkimTcsnq1w9g9bu-qNCX0SluSzoIAAeOIvBzyqdB7YdE8EXQlQp4u5j2n4N7UILRQ3b_pO0lsRe2BSQFkiuIcQeZZRJ84Yu-ckSNzZKvWcu6t85umChstIICMKQF2UwgZzw_SwCj5zCDBayMFG_7saO8YsXFJqMf9ZYZiJcXYMhxewidPsX4WS-Y" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== ADMISSION CTA ====== -->
+    <section class="py-20 max-w-container mx-auto px-responsive">
+        <div class="glass-premium rounded-3xl overflow-hidden grid md:grid-cols-2 shadow-2xl border border-[#b8860b]/10">
+            <div class="p-8 md:p-12 bg-gradient-to-br from-[#0f1a3a] to-[#1a2a5a]">
+                <span class="text-[#b8860b] font-label-premium tracking-[0.2em] block mb-3">Enrol Now</span>
+                <h2 class="font-display-lg text-white mb-4">Admissions Open <br /><span class="text-gold-gradient">2025-26</span></h2>
+                <p class="font-body-premium text-white/70 mb-6 leading-relaxed">Take the first step towards a world-class education. Our admissions team is ready to guide you through every step.</p>
+                <div class="space-y-3 mb-6">
+                    <div class="flex items-center gap-3 text-white/70"><span class="material-symbols-outlined text-[#b8860b]">call</span><span class="text-sm">+91 9929747471</span></div>
+                    <div class="flex items-center gap-3 text-white/70"><span class="material-symbols-outlined text-[#b8860b]">mail</span><span class="text-sm">universalschoolskr@gmail.com</span></div>
+                    <div class="flex items-center gap-3 text-white/70"><span class="material-symbols-outlined text-[#b8860b]">location_on</span><span class="text-sm">Deen Mohammed Road, Ward No. 5, Sikar, Rajasthan</span></div>
+                </div>
+                <a href="admission.html" class="btn-gold inline-block">Admission Enquiry</a>
+            </div>
+            <div class="h-[280px] md:h-auto grayscale contrast-125">
+                <iframe allowfullscreen="" class="w-full h-full" loading="lazy" src="https://maps.google.com/maps?q=Deen+Mohammed+Road+Ward+No.+5+Sikar+Rajasthan&t=&z=16&ie=UTF8&iwloc=&output=embed"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== FOOTER ====== -->
+    <footer class="bg-[#0f1a3a] border-t border-[#b8860b]/10 pt-16 pb-8 rounded-t-2xl">
+        <div class="max-w-container mx-auto px-responsive grid grid-cols-1 md:grid-cols-4 gap-10">
+
+            <div class="space-y-3">
+                <a href="index.html" class="flex items-center gap-3 no-underline">
+                    <div class="w-10 h-10 rounded-full overflow-hidden border border-[#b8860b]/20 flex-shrink-0 bg-white">
+                        <img src="images/logo.png" alt="Logo" class="w-full h-full object-cover" />
+                    </div>
+                    <span class="logo-text-primary text-white text-base">Universal <span class="gold">School</span></span>
+                </a>
+                <p class="text-white/40 text-sm leading-relaxed font-body-premium">"Where excellence is nurtured, potential is unlocked, and future leaders are shaped."</p>
+                <div class="flex gap-4 mt-2">
+                    <a href="#" aria-label="Social" class="text-white/20 hover:text-[#b8860b] transition-colors"><span class="material-symbols-outlined text-2xl">alternate_email</span></a>
+                    <a href="#" aria-label="Social" class="text-white/20 hover:text-[#b8860b] transition-colors"><span class="material-symbols-outlined text-2xl">public</span></a>
+                    <a href="#" aria-label="Social" class="text-white/20 hover:text-[#b8860b] transition-colors"><span class="material-symbols-outlined text-2xl">work</span></a>
+                </div>
+            </div>
+
+            <div class="flex flex-col gap-2">
+                <span class="font-label-premium text-[#b8860b] tracking-[0.15em] mb-2">Quick Links</span>
+                <a href="about.html" class="text-white/40 hover:text-white hover:translate-x-1 transition-all text-sm">About Us</a>
+                <a href="admission.html" class="text-white/40 hover:text-white hover:translate-x-1 transition-all text-sm">Academics</a>
+                <a href="contact.html" class="text-white/40 hover:text-white hover:translate-x-1 transition-all text-sm">Contact</a>
+            </div>
+
+            <div class="flex flex-col gap-3">
+                <span class="font-label-premium text-[#b8860b] tracking-[0.15em] mb-2">Opening Hours</span>
+                <div class="text-sm text-white/40 space-y-0.5">
+                    <p>Monday – Friday &nbsp; 08:30 AM – 02:00 PM</p>
+                    <p>Saturday &nbsp; 08:30 AM – 02:00 PM</p>
+                    <p class="text-[#b8860b] font-medium">Sunday &nbsp; Closed</p>
+                </div>
+                <div class="flex gap-4 text-xs text-white/20 mt-2">
+                    <a href="#PrivacyPolicy" class="hover:text-white/60 transition-colors">Privacy Policy</a>
+                    <a href="#Terms" class="hover:text-white/60 transition-colors">Terms &amp; Conditions</a>
+                </div>
+            </div>
+
+            <div>
+                <span class="font-label-premium text-[#b8860b] tracking-[0.15em] mb-2 block">Newsletter</span>
+                <p class="text-sm text-white/40 mb-3">Subscribe for updates &amp; event invitations.</p>
+                <form id="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing!');">
+                    <div class="flex gap-2">
+                        <input type="email" id="newsletter-email" class="bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white w-full focus:outline-none focus:ring-2 focus:ring-[#b8860b] text-sm placeholder:text-white/20" placeholder="Email Address" aria-label="Email address" required />
+                        <button type="submit" class="bg-gold-gradient text-white px-5 py-2.5 rounded-xl font-bold hover:scale-105 transition-transform text-sm shadow-lg shadow-[#b8860b]/20">Join</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="max-w-container mx-auto px-responsive mt-12 pt-5 border-t border-white/5 text-center">
+            <p class="text-white/20 text-xs font-label-premium tracking-widest">© 2025 Universal Sr. Sec. School, Sikar | design by @ Amzad Pathan</p>
+        </div>
+    </footer>
+
+    <!-- ====== FLOATING ACTIONS ====== -->
+    <div class="fixed bottom-6 right-6 flex flex-col gap-3 z-50">
+        <a href="https://wa.me/919929747471" target="_blank" rel="noopener noreferrer" class="float-btn-premium shadow-xl" aria-label="Chat on WhatsApp">
+            <span class="material-symbols-outlined text-2xl">chat</span>
+        </a>
+        <button id="back-to-top" class="float-btn-premium secondary opacity-0 pointer-events-none transition-all duration-300" aria-label="Back to top">
+            <span class="material-symbols-outlined text-2xl">arrow_upward</span>
+        </button>
+    </div>
+
+    <!-- ====== SCRIPTS ====== -->
+    <script>
+        // ====== 1) HERO SLIDER ======
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof Swiper !== 'undefined') {
+                new Swiper('.hero-slider', {
+                    loop: true,
+                    autoplay: { delay: 5000, disableOnInteraction: false },
+                    speed: 1000,
+                    pagination: { el: '.swiper-pagination', clickable: true },
+                    navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+                    effect: 'slide',
+                });
+            }
+        });
+
+        // ====== 2) CAMPUS SLIDER ======
+        (function initCampus() {
+            function init() {
+                if (typeof Swiper === 'undefined') { setTimeout(init, 200); return; }
+                new Swiper('.campus-slider', {
+                    loop: true,
+                    autoplay: { delay: 4500, disableOnInteraction: false },
+                    speed: 700,
+                    navigation: { nextEl: '.campus-slider-wrapper .swiper-button-next', prevEl: '.campus-slider-wrapper .swiper-button-prev' },
+                    grabCursor: true,
+                });
+            }
+            if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+            else init();
+        })();
+
+        // ====== 3) TOPPER SLIDER ======
+        (function initTopper() {
+            function init() {
+                if (typeof Swiper === 'undefined') { setTimeout(init, 200); return; }
+                new Swiper('.topper-swiper', {
+                    slidesPerView: 1,
+                    spaceBetween: 20,
+                    loop: true,
+                    autoplay: { delay: 3000, disableOnInteraction: false, pauseOnMouseEnter: true },
+                    speed: 600,
+                    navigation: { nextEl: '.custom-swiper-button-next', prevEl: '.custom-swiper-button-prev' },
+                    breakpoints: { 768: { slidesPerView: 3, spaceBetween: 24 } },
+                    grabCursor: true,
+                });
+            }
+            if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+            else init();
+        })();
+
+        // ====== 4) REVEAL ON SCROLL ======
+        (function reveal() {
+            const els = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+            if (!els.length) return;
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+            els.forEach(el => observer.observe(el));
+        })();
+
+        // ====== 5) BACK TO TOP ======
+        (function backToTop() {
+            const btn = document.getElementById('back-to-top');
+            if (!btn) return;
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 500) {
+                    btn.classList.remove('opacity-0', 'pointer-events-none');
+                    btn.style.pointerEvents = 'auto';
+                } else {
+                    btn.classList.add('opacity-0', 'pointer-events-none');
+                    btn.style.pointerEvents = 'none';
+                }
+            });
+            btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        })();
+
+        // ====== 6) HEADER + TICKER ======
+        (function headerTicker() {
+            const header = document.getElementById('main-header');
+            const ticker = document.getElementById('news-ticker');
+            if (!header || !ticker) return;
+
+            function update() {
+                const h = header.offsetHeight;
+                ticker.style.top = h + 'px';
+                if (window.scrollY > 30) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            }
+            window.addEventListener('scroll', update);
+            window.addEventListener('resize', update);
+            update();
+        })();
+
+        // ====== 7) MOBILE MENU ======
+        (function mobile() {
+            const hamburger = document.getElementById('hamburger-btn');
+            const menu = document.getElementById('mobile-menu');
+            const closeBtn = document.getElementById('close-menu');
+            if (!hamburger || !menu || !closeBtn) return;
+
+            function open() {
+                menu.classList.add('open');
+                document.body.style.overflow = 'hidden';
+                hamburger.setAttribute('aria-expanded', 'true');
+                menu.setAttribute('aria-hidden', 'false');
+            }
+
+            function close() {
+                menu.classList.remove('open');
+                document.body.style.overflow = '';
+                hamburger.setAttribute('aria-expanded', 'false');
+                menu.setAttribute('aria-hidden', 'true');
+            }
+
+            hamburger.addEventListener('click', open);
+            closeBtn.addEventListener('click', close);
+            document.querySelectorAll('#mobile-menu a').forEach(a => a.addEventListener('click', close));
+        })();
+
+        // ====== 8) COUNTER ANIMATION ======
+        (function counters() {
+            const counters = document.querySelectorAll('.counter');
+            if (!counters.length) return;
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const el = entry.target;
+                        const target = +el.getAttribute('data-target');
+                        const suffix = el.getAttribute('data-suffix') || '';
+                        let count = 0;
+                        const speed = 20;
+                        const increment = target / 80;
+
+                        const update = () => {
+                            if (count < target) {
+                                count += increment;
+                                el.innerText = Math.ceil(count);
+                                setTimeout(update, speed);
+                            } else {
+                                el.innerText = target + suffix;
+                            }
+                        };
+                        update();
+                        observer.unobserve(el);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            counters.forEach(el => observer.observe(el));
+        })();
+    </script>
+
+</body>
+</html>
